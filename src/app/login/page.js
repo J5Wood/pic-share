@@ -1,6 +1,9 @@
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
+import { useRouter } from "next/navigation";
+
+// ? just make a client component? Can't find a way to navigate from a server component.
 
 export default async function Login() {
   const handleSignUp = async (formData) => {
@@ -9,14 +12,14 @@ export default async function Login() {
     const password = formData.get("password");
 
     const supabase = createServerActionClient({ cookies });
-    await supabase.auth.signUp({
+    const x = await supabase.auth.signUp({
       email,
       password,
       options: {
-        emailRedirectTo: "http://localhost:3000/auth/callback",
+        emailRedirectTo: "http://localhost:3000/home",
       },
     });
-
+    console.log("x: ", x);
     revalidatePath("/");
   };
 
@@ -26,18 +29,24 @@ export default async function Login() {
     const password = formData.get("password");
 
     const supabase = createServerActionClient({ cookies });
-    await supabase.auth.signInWithPassword({
+    const res = await supabase.auth.signInWithPassword({
       email,
       password,
     });
-
     revalidatePath("/");
+    if (res.error) {
+      console.log("ERROR: ", res.error);
+    }
+    console.log("true?", res.data.session);
+    if (res.data.session) {
+    }
   };
 
   const handleSignOut = async () => {
     "use server";
     const supabase = createServerActionClient({ cookies });
-    await supabase.auth.signOut();
+    const x = await supabase.auth.signOut();
+    console.log("x: ", x);
     revalidatePath("/");
   };
 
