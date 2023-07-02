@@ -1,62 +1,64 @@
-import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
-import { revalidatePath } from "next/cache";
-import { cookies } from "next/headers";
+"use client";
+
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-// ? just make a client component? Can't find a way to navigate from a server component.
+export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+  const supabase = createClientComponentClient();
 
-export default async function Login() {
-  const handleSignUp = async (formData) => {
-    "use server";
-    const email = formData.get("email");
-    const password = formData.get("password");
-
-    const supabase = createServerActionClient({ cookies });
-    const x = await supabase.auth.signUp({
+  const handleSignUp = async () => {
+    const res = await supabase.auth.signUp({
       email,
       password,
       options: {
-        emailRedirectTo: "http://localhost:3000/home",
+        emailRedirectTo: `${location.origin}/auth/callback`,
       },
     });
-    console.log("x: ", x);
-    revalidatePath("/");
+    debugger;
+    router.refresh();
   };
 
-  const handleSignIn = async (formData) => {
-    "use server";
-    const email = formData.get("email");
-    const password = formData.get("password");
-
-    const supabase = createServerActionClient({ cookies });
+  const handleSignIn = async () => {
     const res = await supabase.auth.signInWithPassword({
       email,
       password,
     });
-    revalidatePath("/");
+    debugger;
+    // ! Handle Errors
     if (res.error) {
-      console.log("ERROR: ", res.error);
+      console.log("Error: ", res.error.message);
     }
-    console.log("true?", res.data.session);
     if (res.data.session) {
+      router.push("/home");
     }
+    // console.log("Sign in error. Please try again.");
   };
 
   const handleSignOut = async () => {
-    "use server";
-    const supabase = createServerActionClient({ cookies });
-    const x = await supabase.auth.signOut();
-    console.log("x: ", x);
-    revalidatePath("/");
+    await supabase.auth.signOut();
+    router.push("/login");
   };
 
   return (
-    <form action={handleSignUp}>
-      <input name="email" />
-      <input type="password" name="password" />
-      <button>Sign up</button>
-      <button formAction={handleSignIn}>Sign in</button>
-      <button formAction={handleSignOut}>Sign out</button>
-    </form>
+    <>
+      <input
+        name="email"
+        onChange={(e) => setEmail(e.target.value)}
+        value={email}
+      />
+      <input
+        type="password"
+        name="password"
+        onChange={(e) => setPassword(e.target.value)}
+        value={password}
+      />
+      <button onClick={handleSignUp}>Sign up</button>
+      <button onClick={handleSignIn}>Sign in</button>
+      <button onClick={handleSignOut}>Sign out</button>
+    </>
   );
 }
