@@ -11,14 +11,13 @@ export default function Login() {
   const supabase = createClientComponentClient();
 
   const handleSignUp = async () => {
-    const res = await supabase.auth.signUp({
+    await supabase.auth.signUp({
       email,
       password,
       options: {
         emailRedirectTo: `${location.origin}/auth/callback`,
       },
     });
-    debugger;
     router.refresh();
   };
 
@@ -27,20 +26,20 @@ export default function Login() {
       email,
       password,
     });
-    debugger;
+    router.refresh();
     // ! Handle Errors
-    if (res.error) {
-      console.log("Error: ", res.error.message);
-    }
-    if (res.data.session) {
-      router.push("/home");
-    }
+    // if (res.error) {
+    //   console.log("Error: ", res.error.message);
+    // }
+    // if (res.data.session) {
+    //   router.push("/home");
+    // }
     // console.log("Sign in error. Please try again.");
   };
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
-    router.push("/login");
+    router.refresh();
   };
 
   return (

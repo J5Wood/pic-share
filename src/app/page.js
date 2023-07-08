@@ -1,5 +1,14 @@
-import styles from "./page.module.css";
+import React from "react";
+import Header from "./header";
+import NewImgForm from "./newImgForm";
 
-export default function Home() {
-  return <main className={styles.main}>App Router Page</main>;
+export default function Page() {
+  return (
+    <>
+      <Header />
+      <h1>Home Page</h1>
+      <NewImgForm />
+      <div className="posts">A bunch of posts</div>
+    </>
+  );
 }
