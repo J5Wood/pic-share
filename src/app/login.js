@@ -18,6 +18,12 @@ export default function Login() {
         emailRedirectTo: `${location.origin}/auth/callback`,
       },
     });
+    // ! Inform user to check email for confirmation
+    // ? Need to tie auth user to public user to link posts and comments
+    // Not really, users dont need reference ids,
+    // posts and comments can be linked upon creation
+    // just need access to users id when creating posts or images
+    // public user table may not be necessary
     router.refresh();
   };
 
@@ -28,13 +34,13 @@ export default function Login() {
     });
     router.refresh();
     // ! Handle Errors
-    // if (res.error) {
-    //   console.log("Error: ", res.error.message);
-    // }
+    if (res.error) {
+      console.log("Error: ", res.error.message);
+    }
     // if (res.data.session) {
     //   router.push("/home");
     // }
-    // console.log("Sign in error. Please try again.");
+    console.log("Sign in error. Please try again.");
   };
 
   const handleSignOut = async () => {

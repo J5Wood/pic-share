@@ -1,12 +1,13 @@
 import React from "react";
 import Login from "./login";
 import NavBar from "./navbar";
+
 export default function Header() {
   debugger;
+
   function renderHeader() {
-    // check for session
-    debugger;
-    let session = true;
+    // ! Need auth provider
+    const session = false;
     if (session) {
       return <NavBar />;
     }
