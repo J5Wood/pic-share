@@ -37,15 +37,7 @@ export default function Login() {
     if (res.error) {
       console.log("Error: ", res.error.message);
     }
-    // if (res.data.session) {
-    //   router.push("/home");
-    // }
     console.log("Sign in error. Please try again.");
-  };
-
-  const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    router.refresh();
   };
 
   return (
@@ -63,7 +55,6 @@ export default function Login() {
       />
       <button onClick={handleSignUp}>Sign up</button>
       <button onClick={handleSignIn}>Sign in</button>
-      <button onClick={handleSignOut}>Sign out</button>
     </>
   );
 }
