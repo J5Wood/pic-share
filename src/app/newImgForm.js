@@ -1,17 +1,9 @@
-"use client";
 import React from "react";
+import { addItem } from "./actions";
 
 export default function newImgForm() {
-  function handleImageSubmission(e) {
-    e.preventDefault();
-    debugger;
-  }
-
   return (
-    <form
-      style={{ padding: "50px" }}
-      onSubmit={(e) => handleImageSubmission(e)}
-    >
+    <form style={{ padding: "50px" }} action={addItem}>
       <label htmlFor="new-image">New Post</label>
       <input
         type="file"
@@ -19,6 +11,7 @@ export default function newImgForm() {
         name="newImage"
         accept="image/png, image/jpeg"
       />
+      <button type="submit">YEET</button>
     </form>
   );
 }
