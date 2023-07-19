@@ -14,19 +14,31 @@ export async function addItem(formData) {
     return;
   }
 
+  const textContent = formData.get("text-content");
+  const userId = session.user.id;
+
   formData.append("cloud_name", "dqzg3fumi");
   formData.append("upload_preset", "test_preset");
+
   const configObj = {
     method: "post",
     body: formData,
   };
 
-  const res = await fetch(url, configObj);
-  const data = await res.json();
+  const imageRes = await fetch(url, configObj);
+  const imageResData = await imageRes.json();
 
-  console.log("Response: ", data);
-
-  //   If good response, add url to db
-
-  // otherwise handle error
+  const { data, error } = await supabase
+    .from("posts")
+    .insert([
+      {
+        content: textContent,
+        likes: 0,
+        user_id: userId,
+        url: imageResData.secure_url,
+      },
+    ])
+    .select();
+  // console.log(data);
+  // ! Handle response data
 }
