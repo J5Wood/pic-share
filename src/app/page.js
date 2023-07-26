@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./header";
 import NewImgForm from "./newImgForm";
+import GetPosts from "./GetPosts";
 
 export default function Page() {
   return (
@@ -8,7 +9,7 @@ export default function Page() {
       <Header />
       <h1>Home Page</h1>
       <NewImgForm />
-      <div className="posts">A bunch of posts</div>
+      <GetPosts />
     </>
   );
 }

@@ -39,6 +39,7 @@ export async function addItem(formData) {
       },
     ])
     .select();
+
   // console.log(data);
-  // ! Handle response data
+  // ! Refresh page with new image
 }
