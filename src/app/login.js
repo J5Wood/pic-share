@@ -5,8 +5,13 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Login() {
+  const [showChoices, setShowChoices] = useState(true);
+  const [showUsername, setShowUsername] = useState(true);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+
   const router = useRouter();
   const supabase = createClientComponentClient();
 
@@ -16,6 +21,9 @@ export default function Login() {
       password,
       options: {
         emailRedirectTo: `${location.origin}/auth/callback`,
+        data: {
+          username: username,
+        },
       },
     });
     // ! Inform user to check email for confirmation
@@ -37,24 +45,91 @@ export default function Login() {
     if (res.error) {
       console.log("Error: ", res.error.message);
     }
-    console.log("Sign in error. Please try again.");
+    // console.log("Sign in error. Please try again.");
   };
 
-  return (
-    <>
-      <input
-        name="email"
-        onChange={(e) => setEmail(e.target.value)}
-        value={email}
-      />
-      <input
-        type="password"
-        name="password"
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-      />
-      <button onClick={handleSignUp}>Sign up</button>
-      <button onClick={handleSignIn}>Sign in</button>
-    </>
-  );
+  function displayForm(e) {
+    if (e.target.dataset["form"] === "signup") {
+      setShowUsername(true);
+    }
+    if (e.target.dataset["form"] === "login") {
+      setShowUsername(false);
+    }
+    setShowChoices(false);
+  }
+
+  function formDisplay() {
+    if (showUsername) {
+      return (
+        <>
+          <label htmlFor="username">Username: </label>
+          <input
+            name="username"
+            id="username"
+            onChange={(e) => setUsername(e.target.value)}
+            value={username}
+          />
+          <br />
+          <label htmlFor="email">Email: </label>
+          <input
+            name="email"
+            id="email"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
+          <br />
+          <label htmlFor="password">Password: </label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+          />
+          <br />
+          <button onClick={handleSignUp}>Sign up</button>
+        </>
+      );
+    }
+
+    return (
+      <>
+        <label htmlFor="email">Email: </label>
+        <input
+          name="email"
+          id="email"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+        />
+        <br />
+        <label htmlFor="password">Password: </label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+        />
+        <br />
+
+        <button onClick={handleSignIn}>Sign in</button>
+      </>
+    );
+  }
+
+  if (showChoices) {
+    return (
+      <span>
+        <button data-form="login" onClick={(e) => displayForm(e)}>
+          Login
+        </button>
+        <p>OR</p>
+        <button data-form="signup" onClick={(e) => displayForm(e)}>
+          Sign Up
+        </button>
+      </span>
+    );
+  } else {
+    return formDisplay();
+  }
 }

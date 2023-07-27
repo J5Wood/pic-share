@@ -13,7 +13,7 @@ export async function addItem(formData) {
     console.error("No Session, Must be logged in to add a photo");
     return;
   }
-
+  console.log(session);
   const textContent = formData.get("text-content");
   const userId = session.user.id;
 
