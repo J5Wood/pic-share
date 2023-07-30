@@ -13,9 +13,10 @@ export async function addItem(formData) {
     console.error("No Session, Must be logged in to add a photo");
     return;
   }
-  console.log(session);
+
   const textContent = formData.get("text-content");
   const userId = session.user.id;
+  const username = session.user.user_metadata.username;
 
   formData.append("cloud_name", "dqzg3fumi");
   formData.append("upload_preset", "test_preset");
@@ -35,6 +36,7 @@ export async function addItem(formData) {
         content: textContent,
         likes: 0,
         user_id: userId,
+        username: username,
         url: imageResData.secure_url,
       },
     ])

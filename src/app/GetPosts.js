@@ -11,12 +11,15 @@ export default async function GetPosts() {
     if (posts) {
       return posts.map((post) => {
         return (
-          <Image
-            src={post.url}
-            width={250}
-            height={250}
-            alt="WHERE'S MY ALT TEXT?!?!"
-          />
+          <div>
+            <Image
+              src={post.url}
+              width={250}
+              height={250}
+              alt="WHERE'S MY ALT TEXT?!?!"
+            />
+            <h4>{post.username}</h4>
+          </div>
         );
       });
     }
