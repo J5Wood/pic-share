@@ -118,5 +118,16 @@ a {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr auto;
-  text-align: center;
+  text-align: start;
+  border: 1px solid rgba(255, 255, 255, 0.531);
+  padding: 0.5em;
+  border-radius: 5px;
+}
+
+.post-card h4 {
+  display: inline;
+}
+
+.post-card p {
+  display: inline;
 }

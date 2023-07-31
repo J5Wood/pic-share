@@ -12,16 +12,21 @@ export default async function GetPosts() {
     if (posts) {
       return posts.map((post) => {
         return (
-          <Link className="post-card" href={`posts/${post.id.toString()}`}>
+          <Link
+            className="post-card"
+            href={`posts/${post.id.toString()}`}
+            key={post.id}
+          >
             <Image
               src={post.url}
               width={250}
               height={250}
               alt="WHERE'S MY ALT TEXT?!?!"
             />
-            <h4>
-              @{post.username}: {post.content}
-            </h4>
+            <div>
+              <h4>@{post.username}: </h4>
+              <p>{post.content}</p>
+            </div>
           </Link>
         );
       });
