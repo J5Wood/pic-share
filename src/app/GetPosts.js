@@ -1,6 +1,7 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function GetPosts() {
   const supabase = createServerComponentClient({ cookies });
@@ -11,18 +12,20 @@ export default async function GetPosts() {
     if (posts) {
       return posts.map((post) => {
         return (
-          <div>
+          <Link className="post-card" href={`posts/${post.id.toString()}`}>
             <Image
               src={post.url}
               width={250}
               height={250}
               alt="WHERE'S MY ALT TEXT?!?!"
             />
-            <h4>{post.username}</h4>
-          </div>
+            <h4>
+              @{post.username}: {post.content}
+            </h4>
+          </Link>
         );
       });
     }
   }
-  return renderPosts();
+  return <div className="posts-container">{renderPosts()}</div>;
 }
