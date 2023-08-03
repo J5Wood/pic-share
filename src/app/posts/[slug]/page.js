@@ -3,8 +3,6 @@ import { cookies } from "next/headers";
 import Image from "next/image";
 
 export default async function Page({ params: { slug } }) {
-  console.log(slug);
-
   const supabase = createServerComponentClient({ cookies });
 
   const { data } = await supabase
