@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Login() {
-  const [showChoices, setShowChoices] = useState(true);
+  const [showLoginButtons, setShowLoginButtons] = useState(true);
   const [showUsername, setShowUsername] = useState(true);
 
   const [email, setEmail] = useState("");
@@ -16,7 +16,7 @@ export default function Login() {
   const supabase = createClientComponentClient();
 
   const handleSignUp = async () => {
-    await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -26,7 +26,20 @@ export default function Login() {
         },
       },
     });
-    // ! Inform user to check email for confirmation
+    if (error) {
+      displayError(error.message);
+    }
+    if (data.user) {
+      if (data.user.identities?.length === 0) {
+        const error =
+          "An account with this email already exists. Please sign in with your existing account";
+        displayError(error);
+      } else {
+        alert("Please check your email for a confirmation link");
+      }
+    }
+    // ! Remove form after signup
+    // ! Fix auth link that's sent to email
     // ? Need to tie auth user to public user to link posts and comments
     // Not really, users dont need reference ids,
     // posts and comments can be linked upon creation
@@ -35,17 +48,23 @@ export default function Login() {
     router.refresh();
   };
 
+  function displayError(error) {
+    const errorContainer = document.querySelector(".error-container");
+    errorContainer.innerHTML = error;
+  }
+
   const handleSignIn = async () => {
-    const res = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
-    router.refresh();
-    // ! Handle Errors
-    if (res.error) {
-      console.log("Error: ", res.error.message);
+    if (error) {
+      displayError(error.message);
     }
-    // console.log("Sign in error. Please try again.");
+    if (data.error) {
+      displayError(data.error.message);
+    }
+    router.refresh();
   };
 
   function displayForm(e) {
@@ -55,7 +74,7 @@ export default function Login() {
     if (e.target.dataset["form"] === "login") {
       setShowUsername(false);
     }
-    setShowChoices(false);
+    setShowLoginButtons(false);
   }
 
   function formDisplay() {
@@ -117,7 +136,7 @@ export default function Login() {
     );
   }
 
-  if (showChoices) {
+  if (showLoginButtons) {
     return (
       <span>
         <button data-form="login" onClick={(e) => displayForm(e)}>
@@ -130,6 +149,11 @@ export default function Login() {
       </span>
     );
   } else {
-    return formDisplay();
+    return (
+      <div className="form-container">
+        {formDisplay()}
+        <span className="error-container"></span>
+      </div>
+    );
   }
 }
