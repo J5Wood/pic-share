@@ -111,6 +111,12 @@ a {
   padding: 10px;
 }
 
+.back-button {
+  background-color: red;
+  height: 1.5em;
+  width: 1.5em;
+}
+
 .posts-container {
   display: flex;
   flex-flow: row wrap;

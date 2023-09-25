@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function Login() {
   const [showLoginButtons, setShowLoginButtons] = useState(true);
-  const [showUsername, setShowUsername] = useState(true);
+  const [showSignup, setShowSignup] = useState(true);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,12 +15,13 @@ export default function Login() {
   const router = useRouter();
   const supabase = createClientComponentClient();
 
-  const handleSignUp = async () => {
+  const handleSignUp = async (e) => {
+    e.preventDefault();
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        emailRedirectTo: `${location.origin}/auth/callback`,
+        emailRedirectTo: `${location.origin}`,
         data: {
           username: username,
         },
@@ -36,10 +37,9 @@ export default function Login() {
         displayError(error);
       } else {
         alert("Please check your email for a confirmation link");
+        setShowLoginButtons(true);
       }
     }
-    // ! Remove form after signup
-    // ! Fix auth link that's sent to email
     // ? Need to tie auth user to public user to link posts and comments
     // Not really, users dont need reference ids,
     // posts and comments can be linked upon creation
@@ -53,7 +53,8 @@ export default function Login() {
     errorContainer.innerHTML = error;
   }
 
-  const handleSignIn = async () => {
+  const handleSignIn = async (e) => {
+    e.preventDefault();
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -69,26 +70,65 @@ export default function Login() {
 
   function displayForm(e) {
     if (e.target.dataset["form"] === "signup") {
-      setShowUsername(true);
+      setShowSignup(true);
     }
     if (e.target.dataset["form"] === "login") {
-      setShowUsername(false);
+      setShowSignup(false);
     }
     setShowLoginButtons(false);
   }
 
   function formDisplay() {
-    if (showUsername) {
+    if (showSignup) {
       return (
         <>
-          <label htmlFor="username">Username: </label>
-          <input
-            name="username"
-            id="username"
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}
-          />
-          <br />
+          <button
+            className="back-button"
+            onClick={() => setShowLoginButtons(true)}
+          >
+            «
+          </button>
+          <form>
+            <label htmlFor="username">Username: </label>
+            <input
+              name="username"
+              id="username"
+              onChange={(e) => setUsername(e.target.value)}
+              value={username}
+            />
+            <br />
+            <label htmlFor="email">Email: </label>
+            <input
+              name="email"
+              id="email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+            <br />
+            <label htmlFor="password">Password: </label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
+            <br />
+            <button onClick={handleSignUp}>Sign up</button>
+          </form>
+        </>
+      );
+    }
+
+    return (
+      <>
+        <button
+          className="back-button"
+          onClick={() => setShowLoginButtons(true)}
+        >
+          «
+        </button>
+        <form>
           <label htmlFor="email">Email: </label>
           <input
             name="email"
@@ -106,32 +146,8 @@ export default function Login() {
             value={password}
           />
           <br />
-          <button onClick={handleSignUp}>Sign up</button>
-        </>
-      );
-    }
-
-    return (
-      <>
-        <label htmlFor="email">Email: </label>
-        <input
-          name="email"
-          id="email"
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-        />
-        <br />
-        <label htmlFor="password">Password: </label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        />
-        <br />
-
-        <button onClick={handleSignIn}>Sign in</button>
+          <button onClick={handleSignIn}>Sign in</button>
+        </form>
       </>
     );
   }
