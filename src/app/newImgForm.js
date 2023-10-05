@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import addItem from "./actions";
 import { useRouter } from "next/navigation";
 
-export default function newImgForm() {
+export default function newImgForm({ displayForm }) {
   const [content, setContent] = useState("");
   const router = useRouter();
 
@@ -14,13 +14,14 @@ export default function newImgForm() {
 
   async function handleSubmit(data) {
     await addItem(data);
+    displayForm(false);
     router.refresh();
     setContent("");
     clearFileInput();
   }
 
   return (
-    <form style={{ padding: "50px" }} action={handleSubmit}>
+    <form action={handleSubmit}>
       <label htmlFor="file">New Post</label>
       <input type="file" id="file" name="file" accept="image/png, image/jpeg" />
       <label htmlFor="text-content"></label>

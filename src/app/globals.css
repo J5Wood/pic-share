@@ -106,6 +106,13 @@ a {
   }
 }
 
+body > h1 {
+  padding: 1em;
+
+  width: 100%;
+  text-align: center;
+}
+
 .error-container {
   color: red;
   padding: 10px;
@@ -117,6 +124,29 @@ a {
   width: 1.5em;
 }
 
+.navbar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 2em;
+  justify-items: center;
+}
+
+.navbar > * {
+  border: 2px solid white;
+  border-radius: 2em;
+  padding: 0.3em;
+  width: fit-content;
+  height: fit-content;
+}
+
+.signout-button {
+  background-color: red;
+}
+
+.new-image-form > * {
+  padding: 0;
+}
 .posts-container {
   display: flex;
   flex-flow: row wrap;
