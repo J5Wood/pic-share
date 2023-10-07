@@ -17,5 +17,5 @@ export default async function Header() {
     return <Login />;
   }
 
-  return <div>{renderHeader()}</div>;
+  return <>{renderHeader()}</>;
 }

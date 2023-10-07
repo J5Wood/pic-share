@@ -78,6 +78,28 @@ export default function Login() {
     setShowLoginButtons(false);
   }
 
+  function emailAndPasswordFields() {
+    return (
+      <>
+        <label htmlFor="email">Email: </label>
+        <input
+          name="email"
+          id="email"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+        />
+        <label htmlFor="password">Password: </label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+        />
+      </>
+    );
+  }
+
   function formDisplay() {
     if (showSignup) {
       return (
@@ -86,9 +108,10 @@ export default function Login() {
             className="back-button"
             onClick={() => setShowLoginButtons(true)}
           >
-            «
+            ←
           </button>
           <form>
+            {emailAndPasswordFields()}
             <label htmlFor="username">Username: </label>
             <input
               name="username"
@@ -96,24 +119,6 @@ export default function Login() {
               onChange={(e) => setUsername(e.target.value)}
               value={username}
             />
-            <br />
-            <label htmlFor="email">Email: </label>
-            <input
-              name="email"
-              id="email"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-            />
-            <br />
-            <label htmlFor="password">Password: </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-            />
-            <br />
             <button onClick={handleSignUp}>Sign up</button>
           </form>
         </>
@@ -126,26 +131,10 @@ export default function Login() {
           className="back-button"
           onClick={() => setShowLoginButtons(true)}
         >
-          «
+          ←
         </button>
         <form>
-          <label htmlFor="email">Email: </label>
-          <input
-            name="email"
-            id="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-          />
-          <br />
-          <label htmlFor="password">Password: </label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-          />
-          <br />
+          {emailAndPasswordFields()}
           <button onClick={handleSignIn}>Sign in</button>
         </form>
       </>
@@ -154,19 +143,27 @@ export default function Login() {
 
   if (showLoginButtons) {
     return (
-      <span>
-        <button data-form="login" onClick={(e) => displayForm(e)}>
+      <div className="auth-button-display">
+        <button
+          className="auth-button"
+          data-form="login"
+          onClick={(e) => displayForm(e)}
+        >
           Login
         </button>
         <p>OR</p>
-        <button data-form="signup" onClick={(e) => displayForm(e)}>
+        <button
+          className="signup-button auth-button"
+          data-form="signup"
+          onClick={(e) => displayForm(e)}
+        >
           Sign Up
         </button>
-      </span>
+      </div>
     );
   } else {
     return (
-      <div className="form-container">
+      <div className="auth-form-display">
         {formDisplay()}
         <span className="error-container"></span>
       </div>

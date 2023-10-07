@@ -118,10 +118,63 @@ body > h1 {
   padding: 10px;
 }
 
+.auth-button-display {
+  display: grid;
+  grid-template-columns: 1fr 2em 1fr;
+  grid-template-rows: auto;
+  gap: 2em;
+  justify-items: end;
+  align-items: center;
+  padding-top: 1em;
+}
+
+.auth-button-display > * {
+  padding: 0.4em;
+  width: fit-content;
+  height: fit-content;
+  font-size: medium;
+}
+
+.auth-button {
+  border: 2px solid white;
+  border-radius: 1em;
+  background: none;
+  cursor: pointer;
+}
+
+.signup-button {
+  justify-self: start;
+}
+
+.auth-form-display {
+  display: grid;
+  grid-template-columns: 1fr 2em auto 1fr;
+  grid-template-rows: auto;
+  justify-items: center;
+  align-items: center;
+  padding-top: 1em;
+  gap: 2em;
+}
+
+.auth-form-display > form {
+  display: grid;
+  grid-template: auto auto auto / auto;
+  grid-row: 1 / 2;
+  grid-column: 3 / 4;
+  justify-items: center;
+  gap: 0.3em;
+}
+
 .back-button {
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
+  width: 2em;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: red;
-  height: 1.5em;
-  width: 1.5em;
+  font-size: medium;
 }
 
 .navbar {
@@ -130,22 +183,62 @@ body > h1 {
   grid-template-rows: 1fr;
   gap: 2em;
   justify-items: center;
+  padding-top: 1em;
 }
 
 .navbar > * {
   border: 2px solid white;
-  border-radius: 2em;
-  padding: 0.3em;
+  border-radius: 1em;
+  padding: 0.4em;
   width: fit-content;
   height: fit-content;
+  font-size: medium;
+}
+
+.new-image-button {
+  cursor: pointer;
+  background-color: darkgreen;
 }
 
 .signout-button {
   background-color: red;
+  cursor: pointer;
 }
 
-.new-image-form > * {
-  padding: 0;
+.new-image-form {
+  position: relative;
+}
+
+.new-image-form > form {
+  display: grid;
+  grid-template: auto auto auto / auto;
+  text-align: center;
+  justify-items: center;
+  gap: 0.3em;
+}
+
+.close-button {
+  background-color: red;
+  height: 2em;
+  width: 2em;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.submit-button {
+  width: fit-content;
+}
+
+.auth-form-container {
+  display: grid;
+  grid-template: ;
 }
 
 .posts-container {

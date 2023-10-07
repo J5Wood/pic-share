@@ -17,14 +17,21 @@ export default function Navbar() {
     if (displayForm) {
       return (
         <div className="new-image-form">
-          <button className="back-button" onClick={() => setDisplayForm(false)}>
+          <NewImgForm displayForm={setDisplayForm} />
+          <button
+            className="close-button"
+            onClick={() => setDisplayForm(false)}
+          >
             X
           </button>
-          <NewImgForm displayForm={setDisplayForm} />
         </div>
       );
     }
-    return <button onClick={() => setDisplayForm(true)}>New Image</button>;
+    return (
+      <button className="new-image-button" onClick={() => setDisplayForm(true)}>
+        New Post
+      </button>
+    );
   }
 
   return (

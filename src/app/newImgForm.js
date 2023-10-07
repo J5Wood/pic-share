@@ -22,17 +22,20 @@ export default function newImgForm({ displayForm }) {
 
   return (
     <form action={handleSubmit}>
-      <label htmlFor="file">New Post</label>
+      <label htmlFor="file">Add Image</label>
       <input type="file" id="file" name="file" accept="image/png, image/jpeg" />
-      <label htmlFor="text-content"></label>
+      <label htmlFor="text-content">Description</label>
       <input
         onChange={(e) => setContent(e.target.value)}
         type="text"
         id="text-content"
+        className="text-content"
         name="text-content"
         value={content}
       />
-      <button type="submit">YEET</button>
+      <button className="submit-button" type="submit">
+        SUBMIT
+      </button>
     </form>
   );
 }
