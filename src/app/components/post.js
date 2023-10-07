@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Post({ postData }) {
   function renderHeart() {
@@ -9,11 +8,7 @@ export default function Post({ postData }) {
     return <span>♡</span>;
   }
   return (
-    <Link
-      className="post-card"
-      href={`posts/${postData.id.toString()}`}
-      key={postData.id}
-    >
+    <>
       <Image
         src={postData.url}
         width={250}
@@ -25,6 +20,6 @@ export default function Post({ postData }) {
         <p>{postData.content}</p>
       </div>
       {renderHeart()}
-    </Link>
+    </>
   );
 }

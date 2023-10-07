@@ -147,12 +147,19 @@ body > h1 {
 .new-image-form > * {
   padding: 0;
 }
+
 .posts-container {
   display: flex;
   flex-flow: row wrap;
   gap: 20px;
   align-items: center;
   justify-content: space-evenly;
+}
+
+.post-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .post-card {
