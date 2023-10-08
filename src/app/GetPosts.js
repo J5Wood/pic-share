@@ -11,15 +11,25 @@ export default async function GetPosts() {
   function renderPosts() {
     if (posts) {
       return posts.map((post) => {
-        return (
-          <Link
-            className="post-card"
-            href={`posts/${post.id.toString()}`}
-            key={post.id}
-          >
-            <Post postData={post} key={post.id} />
-          </Link>
-        );
+        if (post.url) {
+          return (
+            <Link
+              className="post-card"
+              href={`posts/${post.id.toString()}`}
+              key={post.id}
+            >
+              <Post postData={post} key={post.id} />
+            </Link>
+          );
+        } else {
+          return (
+            <div className="post-card">
+              <div className="file-not-found">
+                <span className="corner"></span>
+              </div>
+            </div>
+          );
+        }
       });
     }
   }

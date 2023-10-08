@@ -11,11 +11,24 @@ export default async function Page({ params: { slug } }) {
     .match({ id: slug })
     .single();
 
-  return (
-    <div className="post-container">
-      <div className="post-card">
-        <Post postData={data} key={data.id} />
+  if (data.url) {
+    return (
+      <div className="post-container">
+        <div className="post-card">
+          <Post postData={data} key={data.id} />
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="no-image-alert">
+        <div className="post-container">
+          <div className="file-not-found">
+            <span className="corner"></span>
+          </div>
+        </div>
+        <h2>File not found</h2>
+      </div>
+    );
+  }
 }

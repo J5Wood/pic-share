@@ -236,11 +236,6 @@ body > h1 {
   width: fit-content;
 }
 
-.auth-form-container {
-  display: grid;
-  grid-template: ;
-}
-
 .posts-container {
   display: flex;
   flex-flow: row wrap;
@@ -271,4 +266,45 @@ body > h1 {
 
 .post-card p {
   display: inline;
+}
+
+.file-not-found {
+  width: 80px;
+  height: 100px;
+  background: white;
+  position: relative;
+  clip-path: polygon(
+    0 0,
+    50% 0%,
+    100% 40%,
+    100% 100%,
+    0 100%,
+    0% 36%,
+    33% 52%,
+    40% 70%,
+    78% 67%,
+    100% 84%,
+    100% 77%,
+    79% 62%,
+    44% 66%,
+    35% 48%,
+    0 31%
+  );
+}
+
+.corner {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 2px solid black;
+  top: 0;
+  right: 0;
+}
+
+.no-image-alert {
+  display: flex;
+  flex-flow: column;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
 }
