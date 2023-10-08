@@ -1,19 +1,23 @@
 import Image from "next/image";
 
 export default function Post({ postData }) {
+  const postDate = postData["inserted_at"];
+  const correctedDate = postDate.slice(5, 10) + "-" + postDate.slice(0, 4);
+
   function renderHeart() {
     if (postData.postLiked) {
       return <span>♥︎</span>;
     }
     return <span>♡</span>;
   }
+
   return (
     <>
       <Image
         src={postData.url}
         width={250}
         height={250}
-        alt="WHERE'S MY ALT TEXT?!?!"
+        alt={`Photo by ${postData.username} on ${correctedDate}`}
       />
       <div>
         <h4>@{postData.username}: </h4>
