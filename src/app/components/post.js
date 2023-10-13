@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Heart from "./heart.js";
+// import Heart from "./heart.js";
 
 export default function Post({ postData }) {
   const postDate = postData["inserted_at"];
@@ -11,7 +11,7 @@ export default function Post({ postData }) {
   //   }
   //   return <span>♡</span>;
   // }
-  const liked = postData.likes && postData.likes.length > 0 ? true : false;
+  // const liked = postData.likes && postData.likes.length > 0 ? true : false;
   // function renderHeart() {
   //   if (postData.likes && postData.likes.length > 0) {
   //     return <Heart postLiked={true} />;
@@ -31,7 +31,7 @@ export default function Post({ postData }) {
         <p>{postData.content}</p>
       </div>
       {/* <Heart postLiked={postData.} /> */}
-      <Heart postLiked={liked} />
+      {/* <Heart postLiked={liked} /> */}
     </>
   );
 }

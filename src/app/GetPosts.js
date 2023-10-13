@@ -2,6 +2,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import Post from "./components/post";
 import Link from "next/link";
+import Heart from "./components/heart";
 
 export default async function GetPosts() {
   const supabase = createServerComponentClient({ cookies });
@@ -49,15 +50,19 @@ export default async function GetPosts() {
   function renderPosts() {
     if (posts) {
       return posts.map((post) => {
+        const liked = post.likes && post.likes.length > 0 ? true : false;
         if (post.url) {
           return (
-            <Link
-              className="post-card"
-              href={`posts/${post.id.toString()}`}
-              key={post.id}
-            >
-              <Post postData={post} key={post.id} />
-            </Link>
+            <div className="post-card">
+              <Link
+                className="post-card-link"
+                href={`posts/${post.id.toString()}`}
+                key={post.id}
+              >
+                <Post postData={post} key={post.id} />
+              </Link>
+              <Heart postLiked={liked} />
+            </div>
           );
         } else {
           return (

@@ -43,3 +43,7 @@ export default async function addItem(formData) {
     .select();
   return data;
 }
+
+export async function likePost(postId) {
+  console.log("Post Id: ", postId);
+}

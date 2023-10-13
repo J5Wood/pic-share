@@ -1,6 +1,7 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import Post from "../../components/post";
+import Heart from "../../components/heart";
 
 export default async function Page({ params: { slug } }) {
   const supabase = createServerComponentClient({ cookies });
@@ -12,10 +13,12 @@ export default async function Page({ params: { slug } }) {
     .single();
 
   if (data.url) {
+    const liked = data.likes && data.likes.length > 0 ? true : false;
     return (
       <div className="post-container">
         <div className="post-card">
           <Post postData={data} key={data.id} />
+          <Heart postLiked={liked} postId={data.id} />
         </div>
       </div>
     );
