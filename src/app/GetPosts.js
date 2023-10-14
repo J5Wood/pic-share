@@ -10,9 +10,6 @@ export default async function GetPosts() {
     data: { session },
   } = await supabase.auth.getSession();
 
-  // console.log(session);
-
-  // console.log(session.user.id);
   const posts = await (async () => {
     if (session) {
       const userId = session.user.id;
@@ -28,24 +25,6 @@ export default async function GetPosts() {
       return res;
     }
   })();
-  // console.log(posts);
-  // const { data: posts } = await supabase
-  //   .from("posts")
-  //   .select(`url, id, username, content, inserted_at, likes!left(*)`)
-  //   .eq("likes.user_id", userId);
-
-  // console.log("Post: \n", posts[39]);
-  // } else {
-  // const { data: posts } = await supabase
-  //   .from("posts")
-  //   .select(`url, id, username, content, inserted_at`);
-
-  // console.log(posts);
-  // }
-  // const { data, error } = await supabase
-  // .from('cities')
-  // .select('name, countries!inner(name)')
-  // .eq('countries.name', 'Indonesia')
 
   function renderPosts() {
     if (posts) {
@@ -61,7 +40,7 @@ export default async function GetPosts() {
               >
                 <Post postData={post} key={post.id} />
               </Link>
-              <Heart postLiked={liked} />
+              <Heart postLiked={liked} postId={post.id} />
             </div>
           );
         } else {

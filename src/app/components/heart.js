@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { likePost } from "../actions";
+import { likePost } from "../likeActions";
 
 export default function Heart({ postLiked, postId }) {
   const [liked, setLiked] = useState(postLiked);
