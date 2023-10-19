@@ -15,7 +15,7 @@ export default function Heart({ postLiked, postId }) {
   }
 
   function handleClick() {
-    likePost(id);
+    likePost(id, liked);
     setLiked(!liked);
   }
 

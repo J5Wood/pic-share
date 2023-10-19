@@ -8,8 +8,8 @@ export default async function Page({ params: { slug } }) {
 
   const { data } = await supabase
     .from("posts")
-    .select()
-    .match({ id: slug })
+    .select(`url, id, username, content, inserted_at, likes!left(*)`)
+    .eq("id", slug)
     .single();
 
   if (data.url) {
