@@ -26,6 +26,12 @@ export default async function GetPosts() {
     }
   })();
 
+  function renderHeart(id, liked) {
+    if (session) {
+      return <Heart postLiked={liked} postId={id} />;
+    }
+  }
+
   function renderPosts() {
     if (posts) {
       return posts.map((post) => {
@@ -40,7 +46,7 @@ export default async function GetPosts() {
               >
                 <Post postData={post} key={post.id} />
               </Link>
-              <Heart postLiked={liked} postId={post.id} />
+              {renderHeart(post.id, liked)}
             </div>
           );
         } else {

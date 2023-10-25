@@ -5,6 +5,9 @@ import Heart from "../../components/heart";
 
 export default async function Page({ params: { slug } }) {
   const supabase = createServerComponentClient({ cookies });
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
   const { data } = await supabase
     .from("posts")
@@ -12,13 +15,19 @@ export default async function Page({ params: { slug } }) {
     .eq("id", slug)
     .single();
 
+  function renderHeart(id, liked) {
+    if (session) {
+      return <Heart postLiked={liked} postId={id} />;
+    }
+  }
+
   if (data.url) {
     const liked = data.likes && data.likes.length > 0 ? true : false;
     return (
       <div className="post-container">
         <div className="post-card">
           <Post postData={data} key={data.id} />
-          <Heart postLiked={liked} postId={data.id} />
+          {renderHeart(data.id, liked)}
         </div>
       </div>
     );
