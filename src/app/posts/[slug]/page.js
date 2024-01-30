@@ -2,6 +2,8 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import Post from "../../components/post";
 import Heart from "../../components/heart";
+import PostComments from "../../actions/PostComments";
+import CommentForm from "../../CommentForm";
 
 export default async function Page({ params: { slug } }) {
   const supabase = createServerComponentClient({ cookies });
@@ -24,12 +26,16 @@ export default async function Page({ params: { slug } }) {
   if (data.url) {
     const liked = data.likes && data.likes.length > 0 ? true : false;
     return (
-      <div className="post-container">
-        <div className="post-card">
-          <Post postData={data} key={data.id} />
-          {renderHeart(data.id, liked)}
+      <>
+        <div className="post-container">
+          <div className="post-card">
+            <Post postData={data} key={data.id} />
+            {renderHeart(data.id, liked)}
+          </div>
         </div>
-      </div>
+        <PostComments postIdData={data.id} />
+        <CommentForm postIdData={data.id} />
+      </>
     );
   } else {
     return (
@@ -39,7 +45,7 @@ export default async function Page({ params: { slug } }) {
             <span className="corner"></span>
           </div>
         </div>
-        <h2>File not found</h2>
+        <h2>Image Not Found</h2>
       </div>
     );
   }

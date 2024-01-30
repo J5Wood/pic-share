@@ -34,7 +34,6 @@ export default async function addItem(formData) {
     .insert([
       {
         content: textContent,
-        likes: 0,
         user_id: userId,
         username: username,
         url: imageResData.secure_url,

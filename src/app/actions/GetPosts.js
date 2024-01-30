@@ -1,8 +1,8 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import Post from "./components/post";
+import Post from "../components/post";
 import Link from "next/link";
-import Heart from "./components/heart";
+import Heart from "../components/heart";
 
 export default async function GetPosts() {
   const supabase = createServerComponentClient({ cookies });
@@ -12,16 +12,18 @@ export default async function GetPosts() {
 
   const posts = await (async () => {
     if (session) {
-      const userId = session.user.id;
+      // const userId = session.user.id;
       const { data: res } = await supabase
         .from("posts")
         .select(`url, id, username, content, inserted_at, likes!left(*)`)
-        .eq("likes.user_id", userId);
+        .order("id", { ascending: false });
+      // .eq("likes.user_id", userId);
       return res;
     } else {
       const { data: res } = await supabase
         .from("posts")
-        .select(`url, id, username, content, inserted_at`);
+        .select(`url, id, username, content, inserted_at`)
+        .order("id", { ascending: false });
       return res;
     }
   })();
@@ -55,6 +57,7 @@ export default async function GetPosts() {
               <div className="file-not-found">
                 <span className="corner"></span>
               </div>
+              Image Not Found
             </div>
           );
         }

@@ -316,3 +316,11 @@ body > h1 {
   justify-content: center;
   align-items: center;
 }
+
+/*** COMMENTS */
+
+.comment {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: auto auto;
+}
