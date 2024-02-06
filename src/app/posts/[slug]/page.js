@@ -23,6 +23,12 @@ export default async function Page({ params: { slug } }) {
     }
   }
 
+  function renderCommentForm(id) {
+    if (session) {
+      return <CommentForm postIdData={id} />;
+    }
+  }
+
   if (data.url) {
     const liked = data.likes && data.likes.length > 0 ? true : false;
     return (
@@ -34,7 +40,7 @@ export default async function Page({ params: { slug } }) {
           </div>
         </div>
         <PostComments postIdData={data.id} />
-        <CommentForm postIdData={data.id} />
+        {renderCommentForm(data.id)}
       </>
     );
   } else {

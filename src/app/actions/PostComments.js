@@ -11,7 +11,6 @@ export default async function PostComments({ postIdData }) {
       .eq("post_id", postIdData);
     return res;
   })();
-  console.log("COMMENTS: ", comments);
 
   function renderComments() {
     if (comments) {
@@ -20,5 +19,5 @@ export default async function PostComments({ postIdData }) {
       });
     }
   }
-  return renderComments();
+  return <div className="comments-container">{renderComments()}</div>;
 }

@@ -319,8 +319,32 @@ body > h1 {
 
 /*** COMMENTS */
 
+.comment-form {
+  padding-top: 0.5em;
+  width: 100%;
+  margin-left: calc(25%);
+}
+
+.comments-container {
+  width: 50%;
+  margin-left: calc(25%);
+  padding: 0.5em 0;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
 .comment {
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: auto auto;
+  padding: 0.1em 0;
+  border: 1px solid rgb(25, 25, 25);
+}
+
+.comment h4 {
+  display: inline;
+  padding-right: 1em;
+  padding-left: 0.2em;
+}
+
+.comment p {
+  display: inline;
+  line-height: 1.4em;
 }
