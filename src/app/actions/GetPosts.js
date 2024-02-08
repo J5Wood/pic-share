@@ -12,12 +12,10 @@ export default async function GetPosts() {
 
   const posts = await (async () => {
     if (session) {
-      // const userId = session.user.id;
       const { data: res } = await supabase
         .from("posts")
-        .select(`url, id, username, content, inserted_at, likes!left(*)`)
+        .select(`url, id, username, content, inserted_at, likes(user_id)`)
         .order("id", { ascending: false });
-      // .eq("likes.user_id", userId);
       return res;
     } else {
       const { data: res } = await supabase
@@ -37,7 +35,15 @@ export default async function GetPosts() {
   function renderPosts() {
     if (posts) {
       return posts.map((post) => {
-        const liked = post.likes && post.likes.length > 0 ? true : false;
+        let liked = false;
+        if (!!post.likes && !!post.likes[0]) {
+          for (let like of post.likes) {
+            if (like.user_id === session.user.id) {
+              liked = true;
+              break;
+            }
+          }
+        }
         if (post.url) {
           return (
             <div className="post-card">

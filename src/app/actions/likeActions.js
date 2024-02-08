@@ -10,7 +10,8 @@ export async function likePost(postId, liked) {
     const { data, error } = await supabase
       .from("likes")
       .delete()
-      .match({ post_id: postId, user_id: session.user.id });
+      .match({ post_id: postId, user_id: session.user.id })
+      .select();
   } else {
     const { data, error } = await supabase
       .from("likes")
