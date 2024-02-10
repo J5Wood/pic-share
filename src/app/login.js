@@ -119,7 +119,9 @@ export default function Login() {
               onChange={(e) => setUsername(e.target.value)}
               value={username}
             />
-            <button onClick={handleSignUp}>Sign up</button>
+            <button className="auth-submit-button" onClick={handleSignUp}>
+              Sign up
+            </button>
           </form>
         </>
       );
@@ -135,7 +137,9 @@ export default function Login() {
         </button>
         <form>
           {emailAndPasswordFields()}
-          <button onClick={handleSignIn}>Sign in</button>
+          <button className="auth-submit-button" onClick={handleSignIn}>
+            Sign in
+          </button>
         </form>
       </>
     );

@@ -1,11 +1,11 @@
-:root {
-  --max-width: 1100px;
-  --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+/* :root { */
+/* --max-width: 1100px; */
+/* --border-radius: 12px; */
+/* --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
-    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+    "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
 
-  --foreground-rgb: 0, 0, 0;
+/* --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 
@@ -37,10 +37,10 @@
   --callout-rgb: 238, 240, 241;
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
-  --card-border-rgb: 131, 134, 135;
-}
+  --card-border-rgb: 131, 134, 135; */
+/* } */
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
@@ -71,7 +71,7 @@
     --card-rgb: 100, 100, 100;
     --card-border-rgb: 200, 200, 200;
   }
-}
+} */
 
 * {
   box-sizing: border-box;
@@ -142,6 +142,11 @@ body > h1 {
   cursor: pointer;
 }
 
+.auth-button:hover {
+  color: oklch(83.49% 0.301 149.16);
+  border-color: oklch(83.49% 0.301 149.16);
+}
+
 .signup-button {
   justify-self: start;
 }
@@ -165,6 +170,16 @@ body > h1 {
   gap: 0.3em;
 }
 
+.auth-submit-button {
+  padding: 0.3em;
+  border: 2px solid rgb(0, 0, 0, 0.7);
+  border-radius: 0.35em;
+}
+
+.auth-submit-button:hover {
+  border: 2px solid oklch(55.55% 0.252 259.28);
+}
+
 .back-button {
   grid-row: 1 / 2;
   grid-column: 2 / 3;
@@ -173,7 +188,7 @@ body > h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: red;
+  background-color: oklch(54.38% 0.241 22.1);
   font-size: medium;
 }
 
@@ -261,6 +276,11 @@ body > h1 {
   gap: 0.2em;
   justify-items: center;
   align-items: center;
+  transition: border 0.3s linear;
+}
+
+.post-card:hover {
+  border: 1px solid rgba(255, 255, 255, 0.831);
 }
 
 .post-card h4 {
