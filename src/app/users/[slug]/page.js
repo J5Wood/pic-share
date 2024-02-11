@@ -3,60 +3,86 @@ import { cookies } from "next/headers";
 import PostImage from "../../components/PostImage";
 import PostContent from "../../components/PostContent";
 import Heart from "../../components/heart";
-// import PostComments from "../../actions/PostComments";
-// import CommentForm from "../../CommentForm";
+import Link from "next/link";
 
-export default async function User({ params: { slug } }) {
+export default async function Page({ params: { slug } }) {
   const supabase = createServerComponentClient({ cookies });
   const {
     data: { session },
   } = await supabase.auth.getSession();
 
-  console.log("cookies: ", cookies());
-  console.log("slug: ", slug);
-
-  const { data } = await supabase
-    .from("posts")
-    .select(`url, id, username, content, inserted_at, likes!left(*)`)
-    .eq("username", slug);
-
+  const posts = await (async () => {
+    if (session) {
+      const { data: res } = await supabase
+        .from("posts")
+        .select(`url, id, username, content, inserted_at, likes(user_id)`)
+        .eq("username", slug)
+        .order("id", { ascending: false });
+      return res;
+    } else {
+      const { data: res } = await supabase
+        .from("posts")
+        .select(`url, id, username, content, inserted_at`)
+        .eq("username", slug)
+        .order("id", { ascending: false });
+      return res;
+    }
+  })();
   function renderHeart(id, liked) {
     if (session) {
       return <Heart postLiked={liked} postId={id} />;
     }
   }
 
-  //   function renderCommentForm(id) {
-  //     if (session) {
-  //       return <CommentForm postIdData={id} />;
-  //     }
-  //   }
+  function renderName() {}
 
-  if (data && data.url) {
-    const liked = data.likes && data.likes.length > 0 ? true : false;
-    return (
-      <>
-        <div className="post-container">
-          <div className="post-card">
-            <PostImage postData={data} key={data.id} />
-            <PostContent postData={data} key={data.id} />
-            {renderHeart(data.id, liked)}
-          </div>
-        </div>
-        {/* <PostComments postIdData={data.id} /> */}
-        {/* {renderCommentForm(data.id)} */}
-      </>
-    );
-  } else {
-    return (
-      <div className="no-image-alert">
-        <div className="post-container">
-          <div className="file-not-found">
-            <span className="corner"></span>
-          </div>
-        </div>
-        <h2>Image Not Found</h2>
-      </div>
-    );
+  function renderPosts() {
+    if (posts) {
+      return posts.map((post) => {
+        let liked = false;
+        if (!!post.likes && !!post.likes[0]) {
+          for (let like of post.likes) {
+            if (like.user_id === session.user.id) {
+              liked = true;
+              break;
+            }
+          }
+        }
+        if (post.url) {
+          return (
+            <div className="post-card">
+              <Link
+                className="post-card-link"
+                href={`/posts/${post.id.toString()}`}
+                key={post.id}
+              >
+                <PostImage postData={post} key={post.id} />
+              </Link>
+              <PostContent postData={post} key={post.id} />
+              {renderHeart(post.id, liked)}
+            </div>
+          );
+        } else {
+          return (
+            <div className="post-card">
+              <div className="file-not-found">
+                <span className="corner"></span>
+              </div>
+              Image Not Found
+            </div>
+          );
+        }
+      });
+    } else {
+      return "HI";
+    }
   }
+
+  return (
+    <>
+      <h2 className="username-heading">{slug}</h2>
+      <div className="divider" />
+      <div className="posts-container">{renderPosts()}</div>
+    </>
+  );
 }

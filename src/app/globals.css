@@ -368,3 +368,26 @@ body > h1 {
   display: inline;
   line-height: 1.4em;
 }
+
+/*** USER PAGE */
+
+.user-page {
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 4em auto auto;
+  align-items: center;
+  text-align: center;
+  justify-items: center;
+}
+.username-heading {
+  width: 100%;
+}
+
+.divider {
+  content: "";
+  width: 75%;
+  height: 0.3em;
+  background-color: white;
+  border-radius: 1em;
+  margin: 0.5em 0 2em 0;
+}
