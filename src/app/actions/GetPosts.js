@@ -1,6 +1,7 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import Post from "../components/post";
+import PostImage from "../components/PostImage";
+import PostContent from "../components/PostContent";
 import Link from "next/link";
 import Heart from "../components/heart";
 
@@ -52,8 +53,9 @@ export default async function GetPosts() {
                 href={`posts/${post.id.toString()}`}
                 key={post.id}
               >
-                <Post postData={post} key={post.id} />
+                <PostImage postData={post} key={post.id} />
               </Link>
+              <PostContent postData={post} key={post.id} />
               {renderHeart(post.id, liked)}
             </div>
           );

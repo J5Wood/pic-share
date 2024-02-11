@@ -3,20 +3,22 @@ import { cookies } from "next/headers";
 import PostImage from "../../components/PostImage";
 import PostContent from "../../components/PostContent";
 import Heart from "../../components/heart";
-import PostComments from "../../actions/PostComments";
-import CommentForm from "../../CommentForm";
+// import PostComments from "../../actions/PostComments";
+// import CommentForm from "../../CommentForm";
 
-export default async function Page({ params: { slug } }) {
+export default async function User({ params: { slug } }) {
   const supabase = createServerComponentClient({ cookies });
   const {
     data: { session },
   } = await supabase.auth.getSession();
 
+  console.log("cookies: ", cookies());
+  console.log("slug: ", slug);
+
   const { data } = await supabase
     .from("posts")
     .select(`url, id, username, content, inserted_at, likes!left(*)`)
-    .eq("id", slug)
-    .single();
+    .eq("username", slug);
 
   function renderHeart(id, liked) {
     if (session) {
@@ -24,11 +26,11 @@ export default async function Page({ params: { slug } }) {
     }
   }
 
-  function renderCommentForm(id) {
-    if (session) {
-      return <CommentForm postIdData={id} />;
-    }
-  }
+  //   function renderCommentForm(id) {
+  //     if (session) {
+  //       return <CommentForm postIdData={id} />;
+  //     }
+  //   }
 
   if (data && data.url) {
     const liked = data.likes && data.likes.length > 0 ? true : false;
@@ -41,8 +43,8 @@ export default async function Page({ params: { slug } }) {
             {renderHeart(data.id, liked)}
           </div>
         </div>
-        <PostComments postIdData={data.id} />
-        {renderCommentForm(data.id)}
+        {/* <PostComments postIdData={data.id} /> */}
+        {/* {renderCommentForm(data.id)} */}
       </>
     );
   } else {

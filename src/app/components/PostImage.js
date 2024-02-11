@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function Post({ postData }) {
+export default function PostImage({ postData }) {
   const postDate = postData["inserted_at"];
   const correctedDate = postDate.slice(5, 10) + "-" + postDate.slice(0, 4);
 
@@ -12,10 +12,6 @@ export default function Post({ postData }) {
         height={250}
         alt={`Photo by ${postData.username} on ${correctedDate}`}
       />
-      <div>
-        <h4>@{postData.username}: </h4>
-        <p>{postData.content}</p>
-      </div>
     </>
   );
 }
