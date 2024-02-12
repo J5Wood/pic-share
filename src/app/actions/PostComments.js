@@ -7,7 +7,7 @@ export default async function PostComments({ postIdData }) {
   const comments = await (async () => {
     const { data: res } = await supabase
       .from("comments")
-      .select(`content, username`)
+      .select(`content, username, id`)
       .eq("post_id", postIdData);
     return res;
   })();

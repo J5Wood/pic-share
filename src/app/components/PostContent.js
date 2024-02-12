@@ -1,11 +1,12 @@
 import Link from "next/link";
 
 export default function PostContent({ postData }) {
+  const postId = postData.id.toString();
   return (
     <Link
       className="username-link"
       href={`/users/${postData.username}`}
-      key={postData.id}
+      key={postId.padStart(postId.length + 7, "content")}
     >
       <h4>@{postData.username}: </h4>
       <p>{postData.content}</p>
