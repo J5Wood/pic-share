@@ -5,24 +5,16 @@ import PostContent from "../../components/PostContent";
 import Heart from "../../components/heart";
 import PostComments from "../../actions/PostComments";
 import CommentForm from "../../CommentForm";
+import getPost from "@/app/actions/getPost";
 
 export default async function Page({ params: { slug } }) {
+  console.log("Rendering post page: ");
   const supabase = createServerComponentClient({ cookies });
   const {
     data: { session },
   } = await supabase.auth.getSession();
 
-  const { data } = await supabase
-    .from("posts")
-    .select(`url, id, username, content, inserted_at, likes!left(*)`)
-    .eq("id", slug)
-    .single();
-
-  function renderHeart(id, liked) {
-    if (session) {
-      return <Heart postLiked={liked} postId={id} />;
-    }
-  }
+  const post = await getPost(slug);
 
   function renderCommentForm(id) {
     if (session) {
@@ -30,19 +22,27 @@ export default async function Page({ params: { slug } }) {
     }
   }
 
-  if (data && data.url) {
-    const liked = data.likes && data.likes.length > 0 ? true : false;
+  if (post && post.url) {
+    let liked = false;
+    if (!!post.likes && !!post.likes[0]) {
+      for (let like of post.likes) {
+        if (like.user_id === session.user.id) {
+          liked = true;
+          break;
+        }
+      }
+    }
     return (
       <>
         <div className="post-container">
           <div className="post-card">
-            <PostImage postData={data} key={data.id} />
-            <PostContent postData={data} key={data.id} />
-            {renderHeart(data.id, liked)}
+            <PostImage postData={post} />
+            <PostContent postData={post} />
+            <Heart session={session} postLiked={liked} postId={post.id} />
           </div>
         </div>
-        <PostComments postIdData={data.id} />
-        {renderCommentForm(data.id)}
+        <PostComments postIdData={post.id} />
+        {renderCommentForm(post.id)}
       </>
     );
   } else {

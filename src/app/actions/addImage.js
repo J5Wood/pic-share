@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 const url = "https://api.cloudinary.com/v1_1/dqzg3fumi/image/upload";
 
-export default async function addItem(formData) {
+export default async function addImage(formData) {
   const supabase = createServerComponentClient({ cookies });
   const {
     data: { session },

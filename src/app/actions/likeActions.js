@@ -12,10 +12,12 @@ export async function likePost(postId, liked) {
       .delete()
       .match({ post_id: postId, user_id: session.user.id })
       .select();
+    return data;
   } else {
     const { data, error } = await supabase
       .from("likes")
       .insert({ post_id: postId, user_id: session.user.id })
       .select();
+    return data;
   }
 }

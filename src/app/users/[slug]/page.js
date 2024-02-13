@@ -1,40 +1,20 @@
+// import { useState } from "react";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import PostImage from "../../components/PostImage";
 import PostContent from "../../components/PostContent";
 import Heart from "../../components/heart";
 import Link from "next/link";
+import getUserPosts from "@/app/actions/getUserPosts";
 
 export default async function Page({ params: { slug } }) {
+  // const [liked,  setLiked] = useState(false)
   const supabase = createServerComponentClient({ cookies });
   const {
     data: { session },
   } = await supabase.auth.getSession();
 
-  const posts = await (async () => {
-    if (session) {
-      const { data: res } = await supabase
-        .from("posts")
-        .select(`url, id, username, content, inserted_at, likes(user_id)`)
-        .eq("username", slug)
-        .order("id", { ascending: false });
-      return res;
-    } else {
-      const { data: res } = await supabase
-        .from("posts")
-        .select(`url, id, username, content, inserted_at`)
-        .eq("username", slug)
-        .order("id", { ascending: false });
-      return res;
-    }
-  })();
-  function renderHeart(id, liked) {
-    if (session) {
-      return <Heart postLiked={liked} postId={id} />;
-    }
-  }
-
-  function renderName() {}
+  const posts = await getUserPosts(slug);
 
   function renderPosts() {
     if (posts) {
@@ -52,6 +32,7 @@ export default async function Page({ params: { slug } }) {
           return (
             <div className="post-card">
               <Link
+                prefetch={false}
                 className="post-card-link"
                 href={`/posts/${post.id.toString()}`}
                 key={post.id}
@@ -59,7 +40,12 @@ export default async function Page({ params: { slug } }) {
                 <PostImage postData={post} key={post.id} />
               </Link>
               <PostContent postData={post} key={post.id} />
-              {renderHeart(post.id, liked)}
+              <Heart
+                session={session}
+                // post={post.likes}
+                postLiked={liked}
+                postId={post.id}
+              />
             </div>
           );
         } else {
@@ -73,8 +59,6 @@ export default async function Page({ params: { slug } }) {
           );
         }
       });
-    } else {
-      return "HI";
     }
   }
 
