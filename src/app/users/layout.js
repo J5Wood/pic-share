@@ -1,3 +1,10 @@
+import NavBackButton from "../components/NavBackButton";
+
 export default function UserLayout({ children }) {
-  return <div className="user-page">{children}</div>;
+  return (
+    <>
+      <NavBackButton />
+      {children}
+    </>
+  );
 }

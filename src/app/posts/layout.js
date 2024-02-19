@@ -1,3 +1,10 @@
+import NavBackButton from "../components/NavBackButton";
+
 export default function PostLayout({ children }) {
-  return <>{children}</>;
+  return (
+    <>
+      <NavBackButton />
+      {children}
+    </>
+  );
 }
