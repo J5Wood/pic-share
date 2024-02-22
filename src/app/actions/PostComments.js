@@ -7,7 +7,7 @@ export default async function PostComments({ postIdData }) {
   const comments = await (async () => {
     const { data: res } = await supabase
       .from("comments")
-      .select(`content, username, id`)
+      .select(`content, username, id, user_id`)
       .eq("post_id", postIdData);
     return res;
   })();
@@ -15,7 +15,7 @@ export default async function PostComments({ postIdData }) {
   function renderComments() {
     if (comments) {
       return comments.map((comment) => {
-        return <Comment commentData={comment} />;
+        return <Comment commentData={comment} key={comment.id} />;
       });
     }
   }

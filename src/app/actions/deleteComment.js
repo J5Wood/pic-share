@@ -1,4 +1,5 @@
 "use server";
+
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
@@ -17,6 +18,6 @@ export default async function deleteComment(id) {
 
   //! Delete comment
   if (!!data[0]) {
-    const { data, err } = await supabase.from("comments").delete().eq("id", id);
+    const { err } = await supabase.from("comments").delete().eq("id", id);
   }
 }

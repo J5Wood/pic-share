@@ -281,6 +281,11 @@ body > h1 {
 .comment {
   padding: 0.1em 0;
   border: 1px solid rgb(25, 25, 25);
+  display: flex;
+  /* gap: 0.5em; */
+  justify-content: flex-start;
+  /* width: 100%;`` */
+  text-wrap: wrap;
 }
 
 .comment h4 {
@@ -290,8 +295,19 @@ body > h1 {
 }
 
 .comment p {
-  display: inline;
+  /* flex-grow: 2; */
+  /* display: inline; */
+  /* width: 100%; */
+  /* text-wrap: wrap; */
   line-height: 1.4em;
+  overflow-wrap: break-word;
+}
+
+.delete-button {
+  /* flex-grow: 1; */
+  width: 1.5em;
+  height: 1.5em;
+  margin-left: auto;
 }
 
 /*** USER PAGE */

@@ -24,7 +24,9 @@ export default async function Page() {
             }
           }
         }
-        return <Post liked={liked} post={post} session={session} />;
+        return (
+          <Post liked={liked} post={post} session={session} key={post.id} />
+        );
       });
     }
   }

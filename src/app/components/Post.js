@@ -8,7 +8,6 @@ export default function Post({ post, liked, session }) {
     return (
       <div className="post-card">
         <Link
-          prefetch={false}
           className="post-card-link"
           href={`/posts/${post.id.toString()}`}
           key={post.id}

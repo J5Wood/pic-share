@@ -1,12 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { likePost } from "../actions/likeActions";
 
 export default function Heart({ session, postLiked, postId }) {
-  // console.log(
-  //   "Being pre refetched from main page and user page after hovering image. This is keeping heart from displaying correctly when navigating to post page if prefetch occurs before clicking heart."
-  // );
+  const router = useRouter();
   const [liked, setLiked] = useState(postLiked);
   const id = postId;
 
@@ -20,6 +19,7 @@ export default function Heart({ session, postLiked, postId }) {
   function handleClick() {
     setLiked((prevState) => !prevState);
     likePost(id, liked);
+    router.refresh();
   }
 
   if (session) {
