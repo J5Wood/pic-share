@@ -25,7 +25,7 @@ export default async function Comment({ commentData }) {
       >
         <h4>@{commentData.username}</h4>
       </Link>
-      <p>{commentData.content}</p>
+      <p className="comment-content">{commentData.content}</p>
       {renderDeleteButton()}
     </div>
   );
