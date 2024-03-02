@@ -343,3 +343,10 @@ body > h1 {
   padding: 0.35em;
   cursor: pointer;
 }
+
+.error-component {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}

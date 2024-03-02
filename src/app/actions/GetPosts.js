@@ -7,21 +7,27 @@ export default async function GetPosts() {
     data: { session },
   } = await supabase.auth.getSession();
 
-  const posts = await (async () => {
-    if (session) {
-      const { data: res } = await supabase
-        .from("posts")
-        .select(`url, id, username, content, inserted_at, likes(user_id)`)
-        .order("id", { ascending: false });
-      return res;
-    } else {
-      const { data: res } = await supabase
-        .from("posts")
-        .select(`url, id, username, content, inserted_at`)
-        .order("id", { ascending: false });
-      return res;
-    }
-  })();
+  try {
+    const posts = await (async () => {
+      if (session) {
+        const { data: res, error } = await supabase
+          .from("posts")
+          .select(`url, id, username, content, inserted_at, likes(user_id)`)
+          .order("id", { ascending: false });
+        if (error) throw error;
+        return res;
+      } else {
+        const { data: res, error } = await supabase
+          .from("posts")
+          .select(`url, id, username, content, inserted_at`)
+          .order("id", { ascending: false });
+        if (error) throw error;
+        return res;
+      }
+    })();
 
-  return posts;
+    return posts;
+  } catch (err) {
+    console.log("Error retrieving posts: ", err);
+  }
 }
