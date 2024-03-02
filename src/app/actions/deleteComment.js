@@ -10,14 +10,20 @@ export default async function deleteComment(id) {
   } = await supabase.auth.getSession();
   const userId = session.user.id;
 
-  //! Verify user has permissions to delete
-  const { data } = await supabase
-    .from("comments")
-    .select()
-    .match({ id: id, user_id: userId });
+  try {
+    //! Verify user has permissions to delete
+    const { data, error } = await supabase
+      .from("comments")
+      .select()
+      .match({ id: id, user_id: userId });
 
-  //! Delete comment
-  if (!!data[0]) {
-    const { err } = await supabase.from("comments").delete().eq("id", id);
+    //! Delete comment
+    if (error) throw error;
+    if (!!data[0]) {
+      const { error } = await supabase.from("comments").delete().eq("id", id);
+      if (error) throw error;
+    }
+  } catch (err) {
+    console.log("Comment deletion error: ", err);
   }
 }

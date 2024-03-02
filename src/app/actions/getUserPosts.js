@@ -7,23 +7,29 @@ export default async function getUserPosts(username) {
     data: { session },
   } = await supabase.auth.getSession();
 
-  const posts = (async () => {
-    if (session) {
-      const { data: res } = await supabase
-        .from("posts")
-        .select(`url, id, username, content, inserted_at, likes(user_id)`)
-        .eq("username", username)
-        .order("id", { ascending: false });
-      return res;
-    } else {
-      const { data: res } = await supabase
-        .from("posts")
-        .select(`url, id, username, content, inserted_at`)
-        .eq("username", username)
-        .order("id", { ascending: false });
-      return res;
-    }
-  })();
+  try {
+    const posts = await (async () => {
+      if (session) {
+        const { data: res, error } = await supabase
+          .from("posts")
+          .select(`url, id, username, content, inserted_at, likes(user_id)`)
+          .eq("username", username)
+          .order("id", { ascending: false });
+        if (error) throw error;
+        return res;
+      } else {
+        const { data: res, error } = await supabase
+          .from("posts")
+          .select(`url, id, username, content, inserted_at`)
+          .eq("username", username)
+          .order("id", { ascending: false });
+        if (error) throw error;
+        return res;
+      }
+    })();
 
-  return posts;
+    return posts;
+  } catch (err) {
+    console.log("Error retrieving user's posts: ", err);
+  }
 }
