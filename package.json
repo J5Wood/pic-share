@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "vitest"
   },
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.7.2",
@@ -18,5 +19,11 @@
     "next": "13.4.7",
     "react": "18.2.0",
     "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^14.2.1",
+    "@vitejs/plugin-react": "^4.2.1",
+    "jsdom": "^24.0.0",
+    "vitest": "^1.3.1"
   }
 }
