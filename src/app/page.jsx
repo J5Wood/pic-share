@@ -30,5 +30,9 @@ export default async function Page() {
       });
     }
   }
-  return <div className="posts-container">{renderPosts()}</div>;
+  return (
+    <div className="posts-container" role="posts">
+      {renderPosts()}
+    </div>
+  );
 }

@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <Header />
         <h1>PIC SHARE</h1>
-        <main>{children}</main>
+        <main role="main">{children}</main>
       </body>
     </html>
   );

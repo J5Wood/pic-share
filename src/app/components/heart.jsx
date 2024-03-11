@@ -24,7 +24,7 @@ export default function Heart({ session, postLiked, postId }) {
 
   if (session) {
     return (
-      <span className="heart" onClick={handleClick}>
+      <span className="heart" onClick={handleClick} role="heart">
         {renderHeart()}
       </span>
     );
