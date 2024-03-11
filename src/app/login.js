@@ -148,6 +148,9 @@ export default function Login() {
   if (showLoginButtons) {
     return (
       <div className="auth-button-display">
+        <a className="home-link home-link-reposition" href="/">
+          Home
+        </a>
         <button
           className="auth-button"
           data-form="login"
@@ -168,6 +171,9 @@ export default function Login() {
   } else {
     return (
       <div className="auth-form-display">
+        <a className="home-link home-link-reposition" href="/">
+          Home
+        </a>
         {formDisplay()}
         <span className="error-container"></span>
       </div>

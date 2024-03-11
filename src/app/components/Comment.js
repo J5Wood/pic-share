@@ -11,7 +11,7 @@ export default async function Comment({ commentData }) {
   const commentId = commentData.id.toString();
 
   function renderDeleteButton() {
-    if (commentData.user_id === session.user.id) {
+    if (session && commentData.user_id === session.user.id) {
       return <DeleteButton commentId={commentId} />;
     }
   }

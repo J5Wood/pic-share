@@ -23,7 +23,7 @@ export default async function Page({ params: { slug } }) {
     let liked = false;
     if (!!post.likes && !!post.likes[0]) {
       for (let like of post.likes) {
-        if (like.user_id === session.user.id) {
+        if (session && like.user_id === session.user.id) {
           liked = true;
           break;
         }
