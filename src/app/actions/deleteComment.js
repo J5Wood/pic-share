@@ -1,13 +1,9 @@
 "use server";
 
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
+import serverClient from "./serverClient";
 
 export default async function deleteComment(id) {
-  const supabase = createServerComponentClient({ cookies });
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+  const { supabase, session } = await serverClient();
   const userId = session.user.id;
 
   try {

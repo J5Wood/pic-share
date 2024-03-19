@@ -1,4 +1,5 @@
 import { beforeAll, vi } from "vitest";
+import "dotenv/config";
 
 beforeAll(() => {
   vi.mock("next/navigation", () => {

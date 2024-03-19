@@ -1,9 +1,8 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
+import serverClient from "./serverClient";
 import Comment from "../components/Comment";
 
 export default async function PostComments({ postIdData }) {
-  const supabase = createServerComponentClient({ cookies });
+  const { supabase } = await serverClient();
 
   try {
     const comments = await (async () => {
