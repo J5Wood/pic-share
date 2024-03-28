@@ -28,3 +28,14 @@ test("A post should list the poster and content", async () => {
     "Magna fringilla urna porttitor rhoncus dolor purus."
   );
 });
+
+test("A post should render a heart when there is a session", async () => {
+  render(<Post post={postData} session={true} liked={true} />);
+  expect(screen.getByRole("heart")).toBeDefined;
+});
+
+test("A post should not render a heart when there is no session", async () => {
+  render(<Post post={postData} session={false} liked={false} />);
+  const heart = screen.queryByRole("heart");
+  expect(heart).toBe(null);
+});
