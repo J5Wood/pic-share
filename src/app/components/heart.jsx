@@ -19,7 +19,7 @@ export default function Heart({ session, postLiked, postId }) {
   function handleClick() {
     setLiked((prevState) => !prevState);
     likePost(id, liked);
-    router.refresh();
+    if (router) router.refresh();
   }
 
   if (session) {

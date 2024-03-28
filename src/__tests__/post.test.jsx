@@ -22,7 +22,6 @@ test("A post should display an image", async () => {
 test("A post should list the poster and content", async () => {
   render(<Post post={postData} />);
   const postContent = await screen.getByRole("post-content");
-  console.log("POST", postContent.children[0].innerHTML);
   expect(postContent).toBeDefined();
   expect(postContent.children[0].innerHTML).toMatch("@Billiam");
   expect(postContent.children[1].innerHTML).toMatch(

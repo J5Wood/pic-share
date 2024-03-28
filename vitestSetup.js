@@ -6,13 +6,9 @@ beforeAll(() => {
     const actual = vi.importActual("next/navigation");
     return {
       ...actual,
-      useRouter: vi.fn(() => ({
-        push: vi.fn(),
-      })),
-      useSearchParams: vi.fn(() => ({
-        get: vi.fn(),
-      })),
-      usePathname: vi.fn(),
+      useRouter: vi.fn(),
+      useSearchParams: vi.fn(),
+      usePathname: vi.fn(() => console.log("USING MOCK PATHNAME FUNCTION")),
     };
   });
 });
