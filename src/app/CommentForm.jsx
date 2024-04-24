@@ -13,14 +13,15 @@ export default function CommentForm({ postIdData }) {
     <form
       ref={ref}
       className="comment-form"
+      aria-label="Add a comment"
       action={async (formData) => {
         await createCommentActionWithPostId(formData);
         ref.current?.reset();
       }}
     >
       <label htmlFor="content">Comment:</label>
-      <input name="content" id="content" type="text" />
-      <input type="submit" />
+      <input name="content" id="content" type="text" role="comment-content" />
+      <input type="submit" role="form-submit-button" />
     </form>
   );
 }

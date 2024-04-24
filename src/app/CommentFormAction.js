@@ -14,7 +14,6 @@ export default async function CommentFormAction(postId, formData) {
   const content = formData.get("content");
   const userId = session.user.id;
   const username = session.user.user_metadata.username;
-
   const { data, error } = await supabase.from("comments").insert([
     {
       content: content,

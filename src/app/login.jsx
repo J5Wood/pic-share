@@ -15,6 +15,74 @@ export default function Login() {
   const router = useRouter();
   const supabase = createClientComponentClient();
 
+  function displayForm(e) {
+    if (e.target.dataset["form"] === "signup") {
+      setShowSignup(true);
+    }
+    if (e.target.dataset["form"] === "login") {
+      setShowSignup(false);
+    }
+    setShowLoginButtons(false);
+  }
+
+  function formDisplay() {
+    if (showSignup) {
+      return (
+        <>
+          <form>
+            {emailAndPasswordFields()}
+            <label htmlFor="username">Username: </label>
+            <input
+              name="username"
+              id="username"
+              onChange={(e) => setUsername(e.target.value)}
+              value={username}
+              role="username-input"
+            />
+            <button className="auth-submit-button" onClick={handleSignUp}>
+              Sign up
+            </button>
+          </form>
+        </>
+      );
+    }
+
+    return (
+      <>
+        <form>
+          {emailAndPasswordFields()}
+          <button className="auth-submit-button" onClick={handleSignIn}>
+            Sign in
+          </button>
+        </form>
+      </>
+    );
+  }
+
+  function emailAndPasswordFields() {
+    return (
+      <>
+        <label htmlFor="email">Email: </label>
+        <input
+          name="email"
+          id="email"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          role="email-input"
+        />
+        <label htmlFor="password">Password: </label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          role="password-input"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+        />
+      </>
+    );
+  }
+
   const handleSignUp = async (e) => {
     e.preventDefault();
     const { data, error } = await supabase.auth.signUp({
@@ -40,18 +108,8 @@ export default function Login() {
         setShowLoginButtons(true);
       }
     }
-    // ? Need to tie auth user to public user to link posts and comments
-    // Not really, users dont need reference ids,
-    // posts and comments can be linked upon creation
-    // just need access to users id when creating posts or images
-    // public user table may not be necessary
     router.refresh();
   };
-
-  function displayError(error) {
-    const errorContainer = document.querySelector(".error-container");
-    errorContainer.innerHTML = error;
-  }
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -68,81 +126,9 @@ export default function Login() {
     router.refresh();
   };
 
-  function displayForm(e) {
-    if (e.target.dataset["form"] === "signup") {
-      setShowSignup(true);
-    }
-    if (e.target.dataset["form"] === "login") {
-      setShowSignup(false);
-    }
-    setShowLoginButtons(false);
-  }
-
-  function emailAndPasswordFields() {
-    return (
-      <>
-        <label htmlFor="email">Email: </label>
-        <input
-          name="email"
-          id="email"
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-        />
-        <label htmlFor="password">Password: </label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        />
-      </>
-    );
-  }
-
-  function formDisplay() {
-    if (showSignup) {
-      return (
-        <>
-          <button
-            className="back-button"
-            onClick={() => setShowLoginButtons(true)}
-          >
-            ←
-          </button>
-          <form>
-            {emailAndPasswordFields()}
-            <label htmlFor="username">Username: </label>
-            <input
-              name="username"
-              id="username"
-              onChange={(e) => setUsername(e.target.value)}
-              value={username}
-            />
-            <button className="auth-submit-button" onClick={handleSignUp}>
-              Sign up
-            </button>
-          </form>
-        </>
-      );
-    }
-
-    return (
-      <>
-        <button
-          className="back-button"
-          onClick={() => setShowLoginButtons(true)}
-        >
-          ←
-        </button>
-        <form>
-          {emailAndPasswordFields()}
-          <button className="auth-submit-button" onClick={handleSignIn}>
-            Sign in
-          </button>
-        </form>
-      </>
-    );
+  function displayError(error) {
+    const errorContainer = document.querySelector(".error-container");
+    errorContainer.innerHTML = error;
   }
 
   if (showLoginButtons) {
@@ -155,6 +141,7 @@ export default function Login() {
           className="auth-button"
           data-form="login"
           onClick={(e) => displayForm(e)}
+          role="login-button"
         >
           Login
         </button>
@@ -163,6 +150,7 @@ export default function Login() {
           className="signup-button auth-button"
           data-form="signup"
           onClick={(e) => displayForm(e)}
+          role="signup-button"
         >
           Sign Up
         </button>
@@ -174,6 +162,13 @@ export default function Login() {
         <a className="home-link home-link-reposition" href="/">
           Home
         </a>
+        <button
+          className="back-button"
+          role="auth-forms-back-button"
+          onClick={() => setShowLoginButtons(true)}
+        >
+          ←
+        </button>
         {formDisplay()}
         <span className="error-container"></span>
       </div>
