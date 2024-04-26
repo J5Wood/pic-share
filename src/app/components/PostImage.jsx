@@ -11,6 +11,7 @@ export default function PostImage({ postData }) {
         width={250}
         height={250}
         alt={`Photo by ${postData.username} on ${correctedDate}`}
+        role="post-image"
       />
     </>
   );

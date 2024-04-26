@@ -6,15 +6,15 @@ import Heart from "./heart";
 export default function Post({ post, liked, session }) {
   if (post.url) {
     return (
-      <div className="post-card">
+      <div className="post-card" role="post">
         <Link
           className="post-card-link"
           href={`/posts/${post.id.toString()}`}
-          key={post.id}
+          key={`post-link-${post.id}`}
         >
-          <PostImage postData={post} key={post.id} />
+          <PostImage postData={post} key={`post-image-${post.id}`} />
         </Link>
-        <PostContent postData={post} key={post.id} />
+        <PostContent postData={post} key={`post-content-${post.id}`} />
         <Heart session={session} postLiked={liked} postId={post.id} />
       </div>
     );

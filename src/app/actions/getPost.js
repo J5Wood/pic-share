@@ -1,8 +1,7 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
+import serverClient from "./serverClient";
 
 export default async function getPost(id) {
-  const supabase = createServerComponentClient({ cookies });
+  const { supabase } = await serverClient();
 
   try {
     const { data, error } = await supabase

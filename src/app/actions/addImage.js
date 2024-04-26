@@ -1,13 +1,9 @@
 "use server";
-import { cookies } from "next/headers";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import serverClient from "./serverClient";
 const url = "https://api.cloudinary.com/v1_1/dqzg3fumi/image/upload";
 
 export default async function addImage(formData) {
-  const supabase = createServerComponentClient({ cookies });
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+  const { supabase, session } = await serverClient();
 
   if (!session) {
     console.error("No Session, Must be logged in to add a photo");

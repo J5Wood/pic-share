@@ -1,13 +1,9 @@
 "use server";
-import { cookies } from "next/headers";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { revalidatePath } from "next/cache";
+
+import serverClient from "./actions/serverClient";
 
 export default async function CommentFormAction(postId, formData) {
-  const supabase = createServerComponentClient({ cookies });
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+  const { supabase, session } = await serverClient();
 
   if (!session) {
     console.error("No Session, Must be logged in to comment");
@@ -18,13 +14,17 @@ export default async function CommentFormAction(postId, formData) {
   const userId = session.user.id;
   const username = session.user.user_metadata.username;
 
-  const { data, error } = await supabase.from("comments").insert([
-    {
-      content: content,
-      user_id: userId,
-      username: username,
-      post_id: postId,
-    },
-  ]);
-  revalidatePath();
+  try {
+    const { data, error } = await supabase.from("comments").insert([
+      {
+        content: content,
+        user_id: userId,
+        username: username,
+        post_id: postId,
+      },
+    ]);
+    if (error) throw error;
+  } catch (err) {
+    console.log("Comment submission error: ", err);
+  }
 }

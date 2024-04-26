@@ -1,8 +1,10 @@
 "use client";
 import { createRef } from "react";
 import CommentFormAction from "./CommentFormAction";
+import { useRouter } from "next/navigation";
 
 export default function CommentForm({ postIdData }) {
+  const router = useRouter();
   const ref = createRef();
   const createCommentActionWithPostId = CommentFormAction.bind(
     null,
@@ -13,14 +15,16 @@ export default function CommentForm({ postIdData }) {
     <form
       ref={ref}
       className="comment-form"
+      aria-label="Add a comment"
       action={async (formData) => {
         await createCommentActionWithPostId(formData);
         ref.current?.reset();
+        router.refresh();
       }}
     >
       <label htmlFor="content">Comment:</label>
-      <input name="content" id="content" type="text" />
-      <input type="submit" />
+      <input name="content" id="content" type="text" role="comment-content" />
+      <input type="submit" role="form-submit-button" />
     </form>
   );
 }

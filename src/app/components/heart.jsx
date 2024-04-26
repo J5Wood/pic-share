@@ -19,12 +19,12 @@ export default function Heart({ session, postLiked, postId }) {
   function handleClick() {
     setLiked((prevState) => !prevState);
     likePost(id, liked);
-    router.refresh();
+    if (router) router.refresh();
   }
 
   if (session) {
     return (
-      <span className="heart" onClick={handleClick}>
+      <span className="heart" onClick={handleClick} role="heart">
         {renderHeart()}
       </span>
     );

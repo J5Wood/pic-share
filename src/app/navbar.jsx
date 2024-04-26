@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
@@ -36,11 +37,14 @@ export default function Navbar() {
 
   return (
     <div className="navbar">
-      <a className="home-link" href="/">
+      <a className="home-link limit-button-height" href="/">
         Home
       </a>
       {renderNewImgForm()}
-      <button className="signout-button" onClick={handleSignOut}>
+      <button
+        className="signout-button limit-button-height"
+        onClick={handleSignOut}
+      >
         Sign out
       </button>
     </div>

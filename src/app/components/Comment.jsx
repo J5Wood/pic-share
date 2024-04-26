@@ -1,17 +1,13 @@
 import Link from "next/link";
 import DeleteButton from "./deleteButton";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
+import serverClient from "../actions/serverClient";
 
 export default async function Comment({ commentData }) {
-  const supabase = createServerComponentClient({ cookies });
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+  const { session } = await serverClient();
   const commentId = commentData.id.toString();
 
   function renderDeleteButton() {
-    if (commentData.user_id === session.user.id) {
+    if (session && commentData.user_id === session.user.id) {
       return <DeleteButton commentId={commentId} />;
     }
   }

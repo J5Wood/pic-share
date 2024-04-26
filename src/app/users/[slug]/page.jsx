@@ -1,13 +1,9 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
+import serverClient from "@/app/actions/serverClient";
 import getUserPosts from "../../actions/getUserPosts";
 import Post from "../../components/Post";
 
 export default async function Page({ params: { slug } }) {
-  const supabase = createServerComponentClient({ cookies });
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+  const { session } = await serverClient();
 
   const posts = await getUserPosts(slug);
 
