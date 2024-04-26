@@ -1,8 +1,10 @@
 "use client";
 import { createRef } from "react";
 import CommentFormAction from "./CommentFormAction";
+import { useRouter } from "next/navigation";
 
 export default function CommentForm({ postIdData }) {
+  const router = useRouter();
   const ref = createRef();
   const createCommentActionWithPostId = CommentFormAction.bind(
     null,
@@ -17,6 +19,7 @@ export default function CommentForm({ postIdData }) {
       action={async (formData) => {
         await createCommentActionWithPostId(formData);
         ref.current?.reset();
+        router.refresh();
       }}
     >
       <label htmlFor="content">Comment:</label>

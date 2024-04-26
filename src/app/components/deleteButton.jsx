@@ -5,6 +5,7 @@ import deleteComment from "../actions/deleteComment";
 
 export default async function DeleteButton(commentId) {
   const router = useRouter();
+
   async function handleCommentDelete(e) {
     const id = e.target.dataset.id;
     if (id) {
@@ -17,7 +18,7 @@ export default async function DeleteButton(commentId) {
     <button
       role="delete-comment-button"
       className="delete-button"
-      data-id={commentId}
+      data-id={commentId.commentId}
       onClick={(e) => handleCommentDelete(e)}
     >
       ×
