@@ -214,6 +214,7 @@ body > h1 {
   justify-items: center;
   align-items: center;
   transition: border 0.3s linear;
+  position: relative;
 }
 
 .post-card:hover {
@@ -231,6 +232,12 @@ body > h1 {
 .heart {
   cursor: pointer;
   height: 1.5em;
+}
+
+.delete-post-button {
+  position: absolute;
+  bottom: 0.2em;
+  right: 0.1em;
 }
 
 .file-not-found {

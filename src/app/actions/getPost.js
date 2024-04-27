@@ -6,7 +6,7 @@ export default async function getPost(id) {
   try {
     const { data, error } = await supabase
       .from("posts")
-      .select(`url, id, username, content, inserted_at, likes!left(*)`)
+      .select(`url, id, username, user_id, content, inserted_at, likes!left(*)`)
       .eq("id", id)
       .single();
 
