@@ -20,7 +20,7 @@ vi.mock("../app/actions/serverClient.js", async () => {
   };
 });
 
-vi.mock("../app/components/deleteButton.jsx", async () => {
+vi.mock("../app/components/deleteCommentButton.jsx", async () => {
   return {
     default: vi.fn(() => {
       return <button>Mocked delete button</button>;

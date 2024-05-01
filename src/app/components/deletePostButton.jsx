@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import deletePost from "../actions/deletePost";
 
-export default async function DeletePostButton(postId) {
+export default async function DeletePostButton({ postId }) {
   const router = useRouter();
 
   async function handlePostDelete(e) {
@@ -18,7 +18,7 @@ export default async function DeletePostButton(postId) {
     <button
       role="delete-post-button"
       className="delete-button delete-post-button"
-      data-id={postId.postId}
+      data-id={postId}
       onClick={(e) => handlePostDelete(e)}
     >
       ×
