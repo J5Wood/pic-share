@@ -1,5 +1,5 @@
 import Link from "next/link";
-import DeleteButton from "./deleteButton";
+import DeleteCommentButton from "./deleteCommentButton";
 import serverClient from "../actions/serverClient";
 
 export default async function Comment({ commentData }) {
@@ -8,7 +8,7 @@ export default async function Comment({ commentData }) {
 
   function renderDeleteButton() {
     if (session && commentData.user_id === session.user.id) {
-      return <DeleteButton commentId={commentId} />;
+      return <DeleteCommentButton commentId={commentId} />;
     }
   }
 

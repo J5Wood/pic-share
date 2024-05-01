@@ -2,8 +2,15 @@ import Link from "next/link";
 import PostImage from "./PostImage";
 import PostContent from "./PostContent";
 import Heart from "./heart";
+import DeletePostButton from "./deletePostButton";
 
 export default function Post({ post, liked, session }) {
+  function renderDeleteButton() {
+    if (session && post.user_id === session.user.id) {
+      return <DeletePostButton postId={post.id} />;
+    }
+  }
+
   if (post.url) {
     return (
       <div className="post-card" role="post">
@@ -16,6 +23,7 @@ export default function Post({ post, liked, session }) {
         </Link>
         <PostContent postData={post} key={`post-content-${post.id}`} />
         <Heart session={session} postLiked={liked} postId={post.id} />
+        {renderDeleteButton()}
       </div>
     );
   } else {

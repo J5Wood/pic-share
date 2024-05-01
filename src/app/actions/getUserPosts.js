@@ -8,7 +8,9 @@ export default async function getUserPosts(username) {
       if (session) {
         const { data: res, error } = await supabase
           .from("posts")
-          .select(`url, id, username, content, inserted_at, likes(user_id)`)
+          .select(
+            `url, id, username, user_id, content, inserted_at, likes(user_id)`
+          )
           .eq("username", username)
           .order("id", { ascending: false });
         if (error) throw error;

@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import deleteComment from "../actions/deleteComment";
 
-export default async function DeleteButton(commentId) {
+export default async function DeleteCommentButton({ commentId }) {
   const router = useRouter();
 
   async function handleCommentDelete(e) {
@@ -18,7 +18,7 @@ export default async function DeleteButton(commentId) {
     <button
       role="delete-comment-button"
       className="delete-button"
-      data-id={commentId.commentId}
+      data-id={commentId}
       onClick={(e) => handleCommentDelete(e)}
     >
       ×
