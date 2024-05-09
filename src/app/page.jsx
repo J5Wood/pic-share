@@ -1,9 +1,9 @@
-import GetPosts from "./actions/GetPosts";
-import Post from "./components/Post";
-import serverClient from "./actions/serverClient";
+import GetPosts from "./actions/getPosts";
+import Post from "./components/post";
+import ServerClient from "./actions/serverClient";
 
 export default async function Page() {
-  const { session } = await serverClient();
+  const { session } = await ServerClient();
 
   const posts = await GetPosts();
 

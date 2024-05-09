@@ -1,9 +1,9 @@
 "use server";
 
-import serverClient from "./serverClient";
+import ServerClient from "./serverClient";
 
-export default async function deleteComment(id) {
-  const { supabase, session } = await serverClient();
+export default async function DeleteComment(id) {
+  const { supabase, session } = await ServerClient();
   const userId = session.user.id;
 
   try {

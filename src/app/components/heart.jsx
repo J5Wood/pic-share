@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { likePost } from "../actions/likeActions";
+import LikePost from "../actions/likePost";
 
 export default function Heart({ session, postLiked, postId }) {
   const router = useRouter();
@@ -18,7 +18,7 @@ export default function Heart({ session, postLiked, postId }) {
 
   function handleClick() {
     setLiked((prevState) => !prevState);
-    likePost(id, liked);
+    LikePost(id, liked);
     if (router) router.refresh();
   }
 

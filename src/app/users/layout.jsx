@@ -1,4 +1,4 @@
-import NavBackButton from "../components/NavBackButton";
+import NavBackButton from "../components/navBackButton";
 
 export default function UserLayout({ children }) {
   return (

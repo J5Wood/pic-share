@@ -1,7 +1,7 @@
-import serverClient from "./serverClient";
+import ServerClient from "./serverClient";
 
-export default async function getUserPosts(username) {
-  const { supabase, session } = await serverClient();
+export default async function GetUserPosts(username) {
+  const { supabase, session } = await ServerClient();
 
   try {
     const posts = await (async () => {

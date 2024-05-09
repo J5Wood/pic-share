@@ -1,6 +1,6 @@
 import { expect, test, vi, beforeAll } from "vitest";
 import { render, screen } from "@testing-library/react";
-import Comment from "../app/components/Comment";
+import Comment from "../app/components/comment";
 
 beforeAll(() => {
   vi.mock("next/router", () => require("next-router-mock"));

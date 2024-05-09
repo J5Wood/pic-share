@@ -5,7 +5,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import NewImgForm from "./newImgForm";
 
-export default function Navbar() {
+export default function NavBar() {
   const [displayForm, setDisplayForm] = useState(false);
   const supabase = createClientComponentClient();
   const router = useRouter();

@@ -1,9 +1,9 @@
 import Link from "next/link";
 import DeleteCommentButton from "./deleteCommentButton";
-import serverClient from "../actions/serverClient";
+import ServerClient from "../actions/serverClient";
 
 export default async function Comment({ commentData }) {
-  const { session } = await serverClient();
+  const { session } = await ServerClient();
   const commentId = commentData.id.toString();
 
   function renderDeleteButton() {

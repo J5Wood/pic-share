@@ -1,13 +1,13 @@
-import serverClient from "../../actions/serverClient";
-import PostComments from "../../actions/PostComments";
-import CommentForm from "../../CommentForm";
-import getPost from "@/app/actions/getPost";
-import Post from "@/app/components/Post";
+import ServerClient from "../../actions/serverClient";
+import PostComments from "../../actions/postComments";
+import CommentForm from "../../commentForm";
+import GetPost from "@/app/actions/getPost";
+import Post from "@/app/components/post";
 
 export default async function Page({ params: { slug } }) {
-  const { session } = await serverClient();
+  const { session } = await ServerClient();
 
-  const post = await getPost(slug);
+  const post = await GetPost(slug);
 
   function renderCommentForm(id) {
     if (session) {

@@ -1,4 +1,4 @@
-import Post from "../app/components/Post";
+import Post from "../app/components/post";
 import { expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 

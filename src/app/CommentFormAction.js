@@ -1,9 +1,9 @@
 "use server";
 
-import serverClient from "./actions/serverClient";
+import ServerClient from "./actions/serverClient";
 
 export default async function CommentFormAction(postId, formData) {
-  const { supabase, session } = await serverClient();
+  const { supabase, session } = await ServerClient();
 
   if (!session) {
     console.error("No Session, Must be logged in to comment");

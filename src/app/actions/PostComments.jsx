@@ -1,8 +1,8 @@
-import serverClient from "./serverClient";
-import Comment from "../components/Comment";
+import ServerClient from "./serverClient";
+import Comment from "../components/comment";
 
 export default async function PostComments({ postIdData }) {
-  const { supabase } = await serverClient();
+  const { supabase } = await ServerClient();
 
   try {
     const comments = await (async () => {

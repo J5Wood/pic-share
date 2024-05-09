@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import deletePost from "../actions/deletePost";
+import DeletePost from "../actions/deletePost";
 
 export default async function DeletePostButton({ postId }) {
   const router = useRouter();
@@ -9,7 +9,7 @@ export default async function DeletePostButton({ postId }) {
   async function handlePostDelete(e) {
     const id = e.target.dataset.id;
     if (id) {
-      await deletePost(id);
+      await DeletePost(id);
       router.refresh();
     }
   }

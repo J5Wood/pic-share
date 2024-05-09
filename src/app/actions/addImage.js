@@ -1,9 +1,9 @@
 "use server";
-import serverClient from "./serverClient";
+import ServerClient from "./serverClient";
 const url = "https://api.cloudinary.com/v1_1/dqzg3fumi/image/upload";
 
-export default async function addImage(formData) {
-  const { supabase, session } = await serverClient();
+export default async function AddImage(formData) {
+  const { supabase, session } = await ServerClient();
 
   if (!session) {
     console.error("No Session, Must be logged in to add a photo");

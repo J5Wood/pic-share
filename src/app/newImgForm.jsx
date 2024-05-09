@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
-import addImage from "./actions/addImage";
+import AddImage from "./actions/addImage";
 import { useRouter } from "next/navigation";
 
-export default function newImgForm({ displayForm }) {
+export default function NewImgForm({ displayForm }) {
   const [content, setContent] = useState("");
   const router = useRouter();
 
@@ -13,7 +13,7 @@ export default function newImgForm({ displayForm }) {
   }
 
   async function handleSubmit(data) {
-    await addImage(data);
+    await AddImage(data);
     displayForm(false);
     router.refresh();
     setContent("");

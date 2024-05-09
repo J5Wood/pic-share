@@ -1,6 +1,6 @@
 "use client";
 import { createRef } from "react";
-import CommentFormAction from "./CommentFormAction";
+import CommentFormAction from "./commentFormAction";
 import { useRouter } from "next/navigation";
 
 export default function CommentForm({ postIdData }) {

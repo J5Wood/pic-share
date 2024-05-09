@@ -1,11 +1,11 @@
-import serverClient from "@/app/actions/serverClient";
-import getUserPosts from "../../actions/getUserPosts";
-import Post from "../../components/Post";
+import ServerClient from "@/app/actions/serverClient";
+import GetUserPosts from "../../actions/getUserPosts";
+import Post from "../../components/post";
 
 export default async function Page({ params: { slug } }) {
-  const { session } = await serverClient();
+  const { session } = await ServerClient();
 
-  const posts = await getUserPosts(slug);
+  const posts = await GetUserPosts(slug);
 
   function renderPosts() {
     if (posts) {

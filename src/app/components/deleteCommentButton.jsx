@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import deleteComment from "../actions/deleteComment";
+import DeleteComment from "../actions/deleteComment";
 
 export default async function DeleteCommentButton({ commentId }) {
   const router = useRouter();
@@ -9,7 +9,7 @@ export default async function DeleteCommentButton({ commentId }) {
   async function handleCommentDelete(e) {
     const id = e.target.dataset.id;
     if (id) {
-      await deleteComment(id);
+      await DeleteComment(id);
       router.refresh();
     }
   }

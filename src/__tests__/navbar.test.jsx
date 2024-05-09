@@ -1,4 +1,4 @@
-import Navbar from "../app/navbar";
+import Navbar from "../app/navBar";
 import { expect, test } from "vitest";
 import { render, screen } from "@testing-library/react";
 

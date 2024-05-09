@@ -1,6 +1,6 @@
 import Link from "next/link";
-import PostImage from "./PostImage";
-import PostContent from "./PostContent";
+import PostImage from "./postImage";
+import PostContent from "./postContent";
 import Heart from "./heart";
 import DeletePostButton from "./deletePostButton";
 

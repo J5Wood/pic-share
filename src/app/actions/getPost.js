@@ -1,7 +1,7 @@
-import serverClient from "./serverClient";
+import ServerClient from "./serverClient";
 
-export default async function getPost(id) {
-  const { supabase } = await serverClient();
+export default async function GetPost(id) {
+  const { supabase } = await ServerClient();
 
   try {
     const { data, error } = await supabase

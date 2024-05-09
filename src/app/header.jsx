@@ -1,9 +1,9 @@
 import Login from "./login";
-import NavBar from "./navbar";
-import serverClient from "./actions/serverClient";
+import NavBar from "./navBar";
+import ServerClient from "./actions/serverClient";
 
 export default async function Header() {
-  const { session } = await serverClient();
+  const { session } = await ServerClient();
 
   function renderHeader() {
     if (session) {
