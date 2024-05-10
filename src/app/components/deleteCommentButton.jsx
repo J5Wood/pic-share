@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import DeleteComment from "../actions/deleteComment";
 
-export default async function DeleteCommentButton({ commentId }) {
+export default function DeleteCommentButton({ commentId }) {
   const router = useRouter();
 
   async function handleCommentDelete(e) {
