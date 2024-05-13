@@ -134,11 +134,8 @@ export default function Login() {
   if (showLoginButtons) {
     return (
       <div className="auth-button-display">
-        <a className="home-link home-link-reposition" href="/">
-          Home
-        </a>
         <button
-          className="auth-button"
+          className="auth-button navbar-button"
           data-form="login"
           onClick={(e) => displayForm(e)}
           role="login-button"
@@ -147,7 +144,7 @@ export default function Login() {
         </button>
         <p>OR</p>
         <button
-          className="signup-button auth-button"
+          className="signup-button auth-button navbar-button"
           data-form="signup"
           onClick={(e) => displayForm(e)}
           role="signup-button"
@@ -159,9 +156,6 @@ export default function Login() {
   } else {
     return (
       <div className="auth-form-display">
-        <a className="home-link home-link-reposition" href="/">
-          Home
-        </a>
         <button
           className="back-button"
           role="auth-forms-back-button"

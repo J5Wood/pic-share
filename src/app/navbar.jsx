@@ -29,7 +29,10 @@ export default function NavBar() {
       );
     }
     return (
-      <button className="new-image-button" onClick={() => setDisplayForm(true)}>
+      <button
+        className="new-image-button navbar-button"
+        onClick={() => setDisplayForm(true)}
+      >
         New Post
       </button>
     );
@@ -37,12 +40,9 @@ export default function NavBar() {
 
   return (
     <div className="navbar">
-      <a className="home-link limit-button-height" href="/">
-        Home
-      </a>
       {renderNewImgForm()}
       <button
-        className="signout-button limit-button-height"
+        className="signout-button navbar-button limit-button-height"
         onClick={handleSignOut}
       >
         Sign out

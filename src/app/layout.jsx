@@ -1,10 +1,8 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Lato } from "next/font/google";
 import Header from "./header";
 
-// next/font automatically optimizes Google font.
-// Self hosts Google font, no need for browser to request font at load time.
-const inter = Inter({ subsets: ["latin"] });
+const lato = Lato({ subsets: ["latin"], weight: "400" });
 
 export const metadata = {
   title: "Pic Share",
@@ -14,9 +12,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={lato.className}>
+        <div className="main-header">
+          <a className="main-header-link" href="/">
+            <h1>PIC SHARE</h1>
+          </a>
+        </div>
         <Header />
-        <h1>PIC SHARE</h1>
         <main role="main">{children}</main>
       </body>
     </html>

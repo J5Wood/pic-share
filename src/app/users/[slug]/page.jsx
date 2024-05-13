@@ -29,7 +29,7 @@ export default async function Page({ params: { slug } }) {
 
   return (
     <div className="user-page">
-      <h2 className="username-heading">{slug}</h2>
+      <h2 className="username-heading">@{slug}</h2>
       <div className="divider" />
       <div className="posts-container">{renderPosts()}</div>
     </div>
