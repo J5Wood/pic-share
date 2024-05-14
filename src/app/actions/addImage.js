@@ -1,6 +1,6 @@
 "use server";
 import ServerClient from "./serverClient";
-const url = "https://api.cloudinary.com/v1_1/dqzg3fumi/image/upload";
+const url = process.env.CLOUDINARY_URL;
 
 export default async function AddImage(formData) {
   const { supabase, session } = await ServerClient();
