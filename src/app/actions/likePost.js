@@ -1,11 +1,10 @@
-"use client";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+"use server";
+
+import ServerClient from "./serverClient";
 
 export default async function LikePost(postId, liked) {
-  const supabase = createClientComponentClient();
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+  const { supabase, session } = await ServerClient();
+
   try {
     if (liked) {
       const { data, error } = await supabase
