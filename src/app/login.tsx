@@ -117,11 +117,9 @@ export default function Login() {
       email,
       password,
     });
+    console.log("DATA: ", data);
     if (error) {
       displayError(error.message);
-    }
-    if (data.error) {
-      displayError(data.error.message);
     }
     router.refresh();
   };

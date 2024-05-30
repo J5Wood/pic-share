@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 export default function CommentForm({ postIdData }) {
   const router = useRouter();
-  const ref = createRef();
+  const ref = createRef<HTMLFormElement>();
   const createCommentActionWithPostId = CommentFormAction.bind(
     null,
     postIdData

@@ -8,7 +8,7 @@ export default function NewImgForm({ displayForm }) {
   const router = useRouter();
 
   function clearFileInput() {
-    const fileInput = document.querySelector("#file");
+    const fileInput = document.querySelector("#file") as HTMLInputElement;
     fileInput.value = "";
   }
 

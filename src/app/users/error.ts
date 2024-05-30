@@ -2,6 +2,6 @@
 
 import ErrorComponent from "../components/errorComponent";
 
-export default function Error({ error, reset }) {
-  return ErrorComponent(error, reset);
+export default function Error({ error }) {
+  return ErrorComponent(error);
 }

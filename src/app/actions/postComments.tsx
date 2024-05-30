@@ -4,6 +4,14 @@ import Comment from "../components/comment";
 export default async function PostComments({ postIdData }) {
   const { supabase } = await ServerClient();
 
+  function renderComments(comments) {
+    if (comments) {
+      return comments.map((comment) => {
+        return <Comment commentData={comment} key={comment.id} />;
+      });
+    }
+  }
+
   try {
     const comments = await (async () => {
       const { data: res, error } = await supabase
@@ -14,14 +22,7 @@ export default async function PostComments({ postIdData }) {
       return res;
     })();
 
-    function renderComments() {
-      if (comments) {
-        return comments.map((comment) => {
-          return <Comment commentData={comment} key={comment.id} />;
-        });
-      }
-    }
-    return <div className="comments-container">{renderComments()}</div>;
+    return <div className="comments-container">{renderComments(comments)}</div>;
   } catch (err) {
     console.log("Error retrieving a post's comments: ", err);
   }
