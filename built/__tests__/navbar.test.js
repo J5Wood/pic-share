@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var navBar_1 = require("../app/navBar");
 var vitest_1 = require("vitest");
 var react_1 = require("@testing-library/react");
@@ -44,7 +45,7 @@ var react_1 = require("@testing-library/react");
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                (0, react_1.render)(<navBar_1.default />);
+                (0, react_1.render)((0, jsx_runtime_1.jsx)(navBar_1.default, {}));
                 return [4 /*yield*/, react_1.screen.findByText("New Post")];
             case 1:
                 newPostButton = _a.sent();

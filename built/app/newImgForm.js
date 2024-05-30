@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var react_1 = require("react");
 var addImage_1 = require("./actions/addImage");
 var navigation_1 = require("next/navigation");
@@ -64,14 +65,6 @@ function NewImgForm(_a) {
             });
         });
     }
-    return (<form action={handleSubmit}>
-      <label htmlFor="file">Add Image</label>
-      <input type="file" id="file" name="file" accept="image/png, image/jpeg"/>
-      <label htmlFor="text-content">Description</label>
-      <input onChange={function (e) { return setContent(e.target.value); }} type="text" id="text-content" className="text-content" name="text-content" value={content}/>
-      <button className="submit-button" type="submit">
-        SUBMIT
-      </button>
-    </form>);
+    return ((0, jsx_runtime_1.jsxs)("form", { action: handleSubmit, children: [(0, jsx_runtime_1.jsx)("label", { htmlFor: "file", children: "Add Image" }), (0, jsx_runtime_1.jsx)("input", { type: "file", id: "file", name: "file", accept: "image/png, image/jpeg" }), (0, jsx_runtime_1.jsx)("label", { htmlFor: "text-content", children: "Description" }), (0, jsx_runtime_1.jsx)("input", { onChange: function (e) { return setContent(e.target.value); }, type: "text", id: "text-content", className: "text-content", name: "text-content", value: content }), (0, jsx_runtime_1.jsx)("button", { className: "submit-button", type: "submit", children: "SUBMIT" })] }));
 }
 exports.default = NewImgForm;

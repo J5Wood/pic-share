@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var vitest_1 = require("vitest");
 var react_1 = require("@testing-library/react");
 var heart_1 = require("../app/components/heart");
@@ -51,7 +52,7 @@ vitest_1.vi.mock("../app/actions/likeActions", function () { return __awaiter(vo
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                (0, react_1.render)(<heart_1.default session={true} postLiked={true} postId={12}/>);
+                (0, react_1.render)((0, jsx_runtime_1.jsx)(heart_1.default, { session: true, postLiked: true, postId: 12 }));
                 return [4 /*yield*/, react_1.screen.findByRole("heart")];
             case 1:
                 heart = _a.sent();
@@ -65,7 +66,7 @@ vitest_1.vi.mock("../app/actions/likeActions", function () { return __awaiter(vo
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                (0, react_1.render)(<heart_1.default session={true} postLiked={false} postId={12}/>);
+                (0, react_1.render)((0, jsx_runtime_1.jsx)(heart_1.default, { session: true, postLiked: false, postId: 12 }));
                 return [4 /*yield*/, react_1.screen.findByRole("heart")];
             case 1:
                 heart = _a.sent();
@@ -79,7 +80,7 @@ vitest_1.vi.mock("../app/actions/likeActions", function () { return __awaiter(vo
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                (0, react_1.render)(<heart_1.default session={false} postLiked={false} postId={12}/>);
+                (0, react_1.render)((0, jsx_runtime_1.jsx)(heart_1.default, { session: false, postLiked: false, postId: 12 }));
                 return [4 /*yield*/, react_1.screen.queryByRole("heart")];
             case 1:
                 heart = _a.sent();
@@ -93,7 +94,7 @@ vitest_1.vi.mock("../app/actions/likeActions", function () { return __awaiter(vo
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                (0, react_1.render)(<heart_1.default session={true} postLiked={false} postId={12}/>);
+                (0, react_1.render)((0, jsx_runtime_1.jsx)(heart_1.default, { session: true, postLiked: false, postId: 12 }));
                 return [4 /*yield*/, react_1.screen.findByRole("heart")];
             case 1:
                 heart = _a.sent();

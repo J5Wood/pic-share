@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var navigation_1 = require("next/navigation");
 var deletePost_1 = require("../actions/deletePost");
 function DeletePostButton(_a) {
@@ -60,8 +61,6 @@ function DeletePostButton(_a) {
             });
         });
     }
-    return (<button role="delete-post-button" className="delete-button delete-post-button" data-id={postId} onClick={function (e) { return handlePostDelete(e); }}>
-      ×
-    </button>);
+    return ((0, jsx_runtime_1.jsx)("button", { role: "delete-post-button", className: "delete-button delete-post-button", "data-id": postId, onClick: function (e) { return handlePostDelete(e); }, children: "\u00D7" }));
 }
 exports.default = DeletePostButton;

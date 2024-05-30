@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var serverClient_1 = require("@/app/actions/serverClient");
 var getUserPosts_1 = require("../../actions/getUserPosts");
 var post_1 = require("../../components/post");
@@ -54,7 +55,7 @@ function Page(_a) {
                             }
                         }
                     }
-                    return (<post_1.default liked={liked} post={post} session={session} key={post.id}/>);
+                    return ((0, jsx_runtime_1.jsx)(post_1.default, { liked: liked, post: post, session: session }, post.id));
                 });
             }
         }
@@ -68,11 +69,7 @@ function Page(_a) {
                     return [4 /*yield*/, (0, getUserPosts_1.default)(slug)];
                 case 2:
                     posts = _c.sent();
-                    return [2 /*return*/, (<div className="user-page">
-      <h2 className="username-heading">@{slug}</h2>
-      <div className="divider"/>
-      <div className="posts-container">{renderPosts()}</div>
-    </div>)];
+                    return [2 /*return*/, ((0, jsx_runtime_1.jsxs)("div", { className: "user-page", children: [(0, jsx_runtime_1.jsxs)("h2", { className: "username-heading", children: ["@", slug] }), (0, jsx_runtime_1.jsx)("div", { className: "divider" }), (0, jsx_runtime_1.jsx)("div", { className: "posts-container", children: renderPosts() })] }))];
             }
         });
     });

@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var auth_helpers_nextjs_1 = require("@supabase/auth-helpers-nextjs");
 var navigation_1 = require("next/navigation");
 var react_1 = require("react");
@@ -60,33 +61,12 @@ function Login() {
     }
     function formDisplay() {
         if (showSignup) {
-            return (<>
-          <form>
-            {emailAndPasswordFields()}
-            <label htmlFor="username">Username: </label>
-            <input name="username" id="username" onChange={function (e) { return setUsername(e.target.value); }} value={username} role="username-input"/>
-            <button className="auth-submit-button" onClick={handleSignUp}>
-              Sign up
-            </button>
-          </form>
-        </>);
+            return ((0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: (0, jsx_runtime_1.jsxs)("form", { children: [emailAndPasswordFields(), (0, jsx_runtime_1.jsx)("label", { htmlFor: "username", children: "Username: " }), (0, jsx_runtime_1.jsx)("input", { name: "username", id: "username", onChange: function (e) { return setUsername(e.target.value); }, value: username, role: "username-input" }), (0, jsx_runtime_1.jsx)("button", { className: "auth-submit-button", onClick: handleSignUp, children: "Sign up" })] }) }));
         }
-        return (<>
-        <form>
-          {emailAndPasswordFields()}
-          <button className="auth-submit-button" onClick={handleSignIn}>
-            Sign in
-          </button>
-        </form>
-      </>);
+        return ((0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: (0, jsx_runtime_1.jsxs)("form", { children: [emailAndPasswordFields(), (0, jsx_runtime_1.jsx)("button", { className: "auth-submit-button", onClick: handleSignIn, children: "Sign in" })] }) }));
     }
     function emailAndPasswordFields() {
-        return (<>
-        <label htmlFor="email">Email: </label>
-        <input name="email" id="email" onChange={function (e) { return setEmail(e.target.value); }} value={email} role="email-input"/>
-        <label htmlFor="password">Password: </label>
-        <input type="password" name="password" id="password" role="password-input" onChange={function (e) { return setPassword(e.target.value); }} value={password}/>
-      </>);
+        return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)("label", { htmlFor: "email", children: "Email: " }), (0, jsx_runtime_1.jsx)("input", { name: "email", id: "email", onChange: function (e) { return setEmail(e.target.value); }, value: email, role: "email-input" }), (0, jsx_runtime_1.jsx)("label", { htmlFor: "password", children: "Password: " }), (0, jsx_runtime_1.jsx)("input", { type: "password", name: "password", id: "password", role: "password-input", onChange: function (e) { return setPassword(e.target.value); }, value: password })] }));
     }
     var handleSignUp = function (e) { return __awaiter(_this, void 0, void 0, function () {
         var _a, data, error, error_1;
@@ -153,24 +133,10 @@ function Login() {
         errorContainer.innerHTML = error;
     }
     if (showLoginButtons) {
-        return (<div className="auth-button-display">
-        <button className="auth-button navbar-button" data-form="login" onClick={function (e) { return displayForm(e); }} role="login-button">
-          Login
-        </button>
-        <p>OR</p>
-        <button className="signup-button auth-button navbar-button" data-form="signup" onClick={function (e) { return displayForm(e); }} role="signup-button">
-          Sign Up
-        </button>
-      </div>);
+        return ((0, jsx_runtime_1.jsxs)("div", { className: "auth-button-display", children: [(0, jsx_runtime_1.jsx)("button", { className: "auth-button navbar-button", "data-form": "login", onClick: function (e) { return displayForm(e); }, role: "login-button", children: "Login" }), (0, jsx_runtime_1.jsx)("p", { children: "OR" }), (0, jsx_runtime_1.jsx)("button", { className: "signup-button auth-button navbar-button", "data-form": "signup", onClick: function (e) { return displayForm(e); }, role: "signup-button", children: "Sign Up" })] }));
     }
     else {
-        return (<div className="auth-form-display">
-        <button className="back-button" role="auth-forms-back-button" onClick={function () { return setShowLoginButtons(true); }}>
-          ←
-        </button>
-        {formDisplay()}
-        <span className="error-container"></span>
-      </div>);
+        return ((0, jsx_runtime_1.jsxs)("div", { className: "auth-form-display", children: [(0, jsx_runtime_1.jsx)("button", { className: "back-button", role: "auth-forms-back-button", onClick: function () { return setShowLoginButtons(true); }, children: "\u2190" }), formDisplay(), (0, jsx_runtime_1.jsx)("span", { className: "error-container" })] }));
     }
 }
 exports.default = Login;

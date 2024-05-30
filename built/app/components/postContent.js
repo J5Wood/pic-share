@@ -1,12 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var link_1 = require("next/link");
 function PostContent(_a) {
     var postData = _a.postData;
     var postId = postData.id.toString();
-    return (<link_1.default className="username-link" href={"/users/".concat(postData.username)} key={postId.padStart(postId.length + 7, "content")} role="post-content">
-      <h4>@{postData.username}: </h4>
-      <p>{postData.content}</p>
-    </link_1.default>);
+    return ((0, jsx_runtime_1.jsxs)(link_1.default, { className: "username-link", href: "/users/".concat(postData.username), role: "post-content", children: [(0, jsx_runtime_1.jsxs)("h4", { children: ["@", postData.username, ": "] }), (0, jsx_runtime_1.jsx)("p", { children: postData.content })] }, postId.padStart(postId.length + 7, "content")));
 }
 exports.default = PostContent;

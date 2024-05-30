@@ -1,6 +1,7 @@
 "use client";
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var react_1 = require("react");
 var navigation_1 = require("next/navigation");
 var likePost_1 = require("../actions/likePost");
@@ -22,9 +23,7 @@ function Heart(_a) {
             router.refresh();
     }
     if (session) {
-        return (<span className="heart" onClick={handleClick} role="heart">
-        {renderHeart()}
-      </span>);
+        return ((0, jsx_runtime_1.jsx)("span", { className: "heart", onClick: handleClick, role: "heart", children: renderHeart() }));
     }
 }
 exports.default = Heart;

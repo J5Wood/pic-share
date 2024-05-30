@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var react_1 = require("react");
 var auth_helpers_nextjs_1 = require("@supabase/auth-helpers-nextjs");
 var navigation_1 = require("next/navigation");
@@ -59,22 +60,10 @@ function NavBar() {
     }); };
     function renderNewImgForm() {
         if (displayForm) {
-            return (<div className="new-image-form">
-          <newImgForm_1.default displayForm={setDisplayForm}/>
-          <button className="close-button" onClick={function () { return setDisplayForm(false); }}>
-            X
-          </button>
-        </div>);
+            return ((0, jsx_runtime_1.jsxs)("div", { className: "new-image-form", children: [(0, jsx_runtime_1.jsx)(newImgForm_1.default, { displayForm: setDisplayForm }), (0, jsx_runtime_1.jsx)("button", { className: "close-button", onClick: function () { return setDisplayForm(false); }, children: "X" })] }));
         }
-        return (<button className="new-image-button navbar-button" onClick={function () { return setDisplayForm(true); }}>
-        New Post
-      </button>);
+        return ((0, jsx_runtime_1.jsx)("button", { className: "new-image-button navbar-button", onClick: function () { return setDisplayForm(true); }, children: "New Post" }));
     }
-    return (<div className="navbar">
-      {renderNewImgForm()}
-      <button className="signout-button navbar-button limit-button-height" onClick={handleSignOut}>
-        Sign out
-      </button>
-    </div>);
+    return ((0, jsx_runtime_1.jsxs)("div", { className: "navbar", children: [renderNewImgForm(), (0, jsx_runtime_1.jsx)("button", { className: "signout-button navbar-button limit-button-height", onClick: handleSignOut, children: "Sign out" })] }));
 }
 exports.default = NavBar;

@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var serverClient_1 = require("../../actions/serverClient");
 var postComments_1 = require("../../actions/postComments");
 var commentForm_1 = require("../../commentForm");
@@ -45,7 +46,7 @@ function Page(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
         function renderCommentForm(id) {
             if (session) {
-                return <commentForm_1.default postIdData={id}/>;
+                return (0, jsx_runtime_1.jsx)(commentForm_1.default, { postIdData: id });
             }
         }
         var session, post, liked, _i, _c, like;
@@ -69,13 +70,7 @@ function Page(_a) {
                                 }
                             }
                         }
-                        return [2 /*return*/, (<>
-        <div className="post-container">
-          <post_1.default liked={liked} post={post} session={session}/>
-        </div>
-        <postComments_1.default postIdData={post.id}/>
-        {renderCommentForm(post.id)}
-      </>)];
+                        return [2 /*return*/, ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)("div", { className: "post-container", children: (0, jsx_runtime_1.jsx)(post_1.default, { liked: liked, post: post, session: session }) }), (0, jsx_runtime_1.jsx)(postComments_1.default, { postIdData: post.id }), renderCommentForm(post.id)] }))];
                     }
                     return [2 /*return*/];
             }

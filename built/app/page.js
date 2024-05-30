@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var getPosts_1 = require("./actions/getPosts");
 var post_1 = require("./components/post");
 var serverClient_1 = require("./actions/serverClient");
@@ -54,7 +55,7 @@ function Page() {
                             }
                         }
                     }
-                    return (<post_1.default liked={liked} post={post} session={session} key={post.id}/>);
+                    return ((0, jsx_runtime_1.jsx)(post_1.default, { liked: liked, post: post, session: session }, post.id));
                 });
             }
         }
@@ -67,9 +68,7 @@ function Page() {
                     return [4 /*yield*/, (0, getPosts_1.default)()];
                 case 2:
                     posts = _a.sent();
-                    return [2 /*return*/, (<div className="posts-container" role="posts">
-      {renderPosts()}
-    </div>)];
+                    return [2 /*return*/, ((0, jsx_runtime_1.jsx)("div", { className: "posts-container", role: "posts", children: renderPosts() }))];
             }
         });
     });

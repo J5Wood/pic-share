@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var vitest_1 = require("vitest");
 var react_1 = require("@testing-library/react");
 var user_event_1 = require("@testing-library/user-event");
@@ -46,7 +47,7 @@ var login_1 = require("../app/login");
         switch (_a.label) {
             case 0:
                 user = user_event_1.default.setup();
-                (0, react_1.render)(<login_1.default />);
+                (0, react_1.render)((0, jsx_runtime_1.jsx)(login_1.default, {}));
                 return [4 /*yield*/, react_1.screen.findByRole("login-button")];
             case 1:
                 loginButton = _a.sent();
@@ -93,7 +94,7 @@ var login_1 = require("../app/login");
         switch (_a.label) {
             case 0:
                 user = user_event_1.default.setup();
-                (0, react_1.render)(<login_1.default />);
+                (0, react_1.render)((0, jsx_runtime_1.jsx)(login_1.default, {}));
                 return [4 /*yield*/, react_1.screen.findByRole("signup-button")];
             case 1:
                 signupButton = _a.sent();

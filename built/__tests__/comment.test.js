@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var vitest_1 = require("vitest");
 var react_1 = require("@testing-library/react");
 var comment_1 = require("../app/components/comment");
@@ -61,7 +62,7 @@ vitest_1.vi.mock("../app/components/deleteCommentButton.jsx", function () { retu
     return __generator(this, function (_a) {
         return [2 /*return*/, {
                 default: vitest_1.vi.fn(function () {
-                    return <button>Mocked delete button</button>;
+                    return (0, jsx_runtime_1.jsx)("button", { children: "Mocked delete button" });
                 }),
             }];
     });

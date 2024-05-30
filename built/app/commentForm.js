@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var react_1 = require("react");
 var commentFormAction_1 = require("./commentFormAction");
 var navigation_1 = require("next/navigation");
@@ -46,7 +47,7 @@ function CommentForm(_a) {
     var router = (0, navigation_1.useRouter)();
     var ref = (0, react_1.createRef)();
     var createCommentActionWithPostId = commentFormAction_1.default.bind(null, postIdData);
-    return (<form ref={ref} className="comment-form" aria-label="Add a comment" action={function (formData) { return __awaiter(_this, void 0, void 0, function () {
+    return ((0, jsx_runtime_1.jsxs)("form", { ref: ref, className: "comment-form", "aria-label": "Add a comment", action: function (formData) { return __awaiter(_this, void 0, void 0, function () {
             var _a;
             return __generator(this, function (_b) {
                 switch (_b.label) {
@@ -58,10 +59,6 @@ function CommentForm(_a) {
                         return [2 /*return*/];
                 }
             });
-        }); }}>
-      <label htmlFor="content">Comment:</label>
-      <input name="content" id="content" type="text" role="comment-content"/>
-      <input type="submit" role="form-submit-button"/>
-    </form>);
+        }); }, children: [(0, jsx_runtime_1.jsx)("label", { htmlFor: "content", children: "Comment:" }), (0, jsx_runtime_1.jsx)("input", { name: "content", id: "content", type: "text", role: "comment-content" }), (0, jsx_runtime_1.jsx)("input", { type: "submit", role: "form-submit-button" })] }));
 }
 exports.default = CommentForm;

@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var login_1 = require("./login");
 var navBar_1 = require("./navBar");
 var serverClient_1 = require("./actions/serverClient");
@@ -43,9 +44,9 @@ function Header() {
     return __awaiter(this, void 0, void 0, function () {
         function renderHeader() {
             if (session) {
-                return <navBar_1.default />;
+                return (0, jsx_runtime_1.jsx)(navBar_1.default, {});
             }
-            return <login_1.default />;
+            return (0, jsx_runtime_1.jsx)(login_1.default, {});
         }
         var session;
         return __generator(this, function (_a) {

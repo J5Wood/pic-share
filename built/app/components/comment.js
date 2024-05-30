@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var link_1 = require("next/link");
 var deleteCommentButton_1 = require("./deleteCommentButton");
 var serverClient_1 = require("../actions/serverClient");
@@ -43,7 +44,7 @@ function Comment(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
         function renderDeleteButton() {
             if (session && commentData.user_id === session.user.id) {
-                return <deleteCommentButton_1.default commentId={commentId}/>;
+                return (0, jsx_runtime_1.jsx)(deleteCommentButton_1.default, { commentId: commentId });
             }
         }
         var session, commentId;
@@ -54,13 +55,7 @@ function Comment(_a) {
                 case 1:
                     session = (_c.sent()).session;
                     commentId = commentData.id.toString();
-                    return [2 /*return*/, (<div className="comment">
-      <link_1.default className="username-link" href={"/users/".concat(commentData.username)} key={commentId.padStart(commentId.length + 7, "comment")}>
-        <h4>@{commentData.username}</h4>
-      </link_1.default>
-      <p className="comment-content">{commentData.content}</p>
-      {renderDeleteButton()}
-    </div>)];
+                    return [2 /*return*/, ((0, jsx_runtime_1.jsxs)("div", { className: "comment", children: [(0, jsx_runtime_1.jsx)(link_1.default, { className: "username-link", href: "/users/".concat(commentData.username), children: (0, jsx_runtime_1.jsxs)("h4", { children: ["@", commentData.username] }) }, commentId.padStart(commentId.length + 7, "comment")), (0, jsx_runtime_1.jsx)("p", { className: "comment-content", children: commentData.content }), renderDeleteButton()] }))];
             }
         });
     });

@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var post_1 = require("../app/components/post");
 var vitest_1 = require("vitest");
 var react_1 = require("@testing-library/react");
@@ -53,7 +54,7 @@ vitest_1.vi.mock("../app/components/deletePostButton.jsx", function () { return 
     return __generator(this, function (_a) {
         return [2 /*return*/, {
                 default: vitest_1.vi.fn(function () {
-                    return <button>Mocked Delete Button</button>;
+                    return (0, jsx_runtime_1.jsx)("button", { children: "Mocked Delete Button" });
                 }),
             }];
     });
@@ -63,7 +64,7 @@ vitest_1.vi.mock("../app/components/deletePostButton.jsx", function () { return 
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                (0, react_1.render)(<post_1.default post={postData}/>);
+                (0, react_1.render)((0, jsx_runtime_1.jsx)(post_1.default, { post: postData }));
                 return [4 /*yield*/, react_1.screen.getByRole("post-image")];
             case 1:
                 postImage = _a.sent();
@@ -78,7 +79,7 @@ vitest_1.vi.mock("../app/components/deletePostButton.jsx", function () { return 
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                (0, react_1.render)(<post_1.default post={postData}/>);
+                (0, react_1.render)((0, jsx_runtime_1.jsx)(post_1.default, { post: postData }));
                 return [4 /*yield*/, react_1.screen.getByRole("post-content")];
             case 1:
                 postContent = _a.sent();
@@ -94,7 +95,7 @@ vitest_1.vi.mock("../app/components/deletePostButton.jsx", function () { return 
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                (0, react_1.render)(<post_1.default post={postData} session={{ user: { id: 12 } }} liked={true}/>);
+                (0, react_1.render)((0, jsx_runtime_1.jsx)(post_1.default, { post: postData, session: { user: { id: 12 } }, liked: true }));
                 return [4 /*yield*/, react_1.screen.findByText("Mocked Delete Button")];
             case 1:
                 content = _a.sent();
@@ -105,7 +106,7 @@ vitest_1.vi.mock("../app/components/deletePostButton.jsx", function () { return 
 }); });
 (0, vitest_1.test)("A post should render a heart when there is a session", function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        (0, react_1.render)(<post_1.default post={postData} session={{ user: { id: 10 } }} liked={true}/>);
+        (0, react_1.render)((0, jsx_runtime_1.jsx)(post_1.default, { post: postData, session: { user: { id: 10 } }, liked: true }));
         (0, vitest_1.expect)(react_1.screen.getByRole("heart")).toBeDefined();
         return [2 /*return*/];
     });
@@ -113,7 +114,7 @@ vitest_1.vi.mock("../app/components/deletePostButton.jsx", function () { return 
 (0, vitest_1.test)("A post should not render a heart when there is no session", function () { return __awaiter(void 0, void 0, void 0, function () {
     var heart;
     return __generator(this, function (_a) {
-        (0, react_1.render)(<post_1.default post={postData} session={false} liked={false}/>);
+        (0, react_1.render)((0, jsx_runtime_1.jsx)(post_1.default, { post: postData, session: false, liked: false }));
         heart = react_1.screen.queryByRole("heart");
         (0, vitest_1.expect)(heart).toBe(null);
         return [2 /*return*/];

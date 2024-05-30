@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var serverClient_1 = require("./serverClient");
 var comment_1 = require("../components/comment");
 function PostComments(_a) {
@@ -43,7 +44,7 @@ function PostComments(_a) {
         function renderComments() {
             if (comments_1) {
                 return comments_1.map(function (comment) {
-                    return <comment_1.default commentData={comment} key={comment.id}/>;
+                    return (0, jsx_runtime_1.jsx)(comment_1.default, { commentData: comment }, comment.id);
                 });
             }
         }
@@ -76,7 +77,7 @@ function PostComments(_a) {
                         }); })()];
                 case 3:
                     comments_1 = _c.sent();
-                    return [2 /*return*/, <div className="comments-container">{renderComments()}</div>];
+                    return [2 /*return*/, (0, jsx_runtime_1.jsx)("div", { className: "comments-container", children: renderComments() })];
                 case 4:
                     err_1 = _c.sent();
                     console.log("Error retrieving a post's comments: ", err_1);

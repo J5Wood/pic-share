@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
 var navigation_1 = require("next/navigation");
 var deleteComment_1 = require("../actions/deleteComment");
 function DeleteCommentButton(_a) {
@@ -60,8 +61,6 @@ function DeleteCommentButton(_a) {
             });
         });
     }
-    return (<button role="delete-comment-button" className="delete-button" data-id={commentId} onClick={function (e) { return handleCommentDelete(e); }}>
-      ×
-    </button>);
+    return ((0, jsx_runtime_1.jsx)("button", { role: "delete-comment-button", className: "delete-button", "data-id": commentId, onClick: function (e) { return handleCommentDelete(e); }, children: "\u00D7" }));
 }
 exports.default = DeleteCommentButton;
