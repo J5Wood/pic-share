@@ -3,8 +3,15 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import LikePost from "../actions/likePost";
+import SessionInterface from "./sessionInterface";
 
-export default function Heart({ session, postLiked, postId }) {
+interface HeartProps {
+  session: SessionInterface;
+  postLiked: boolean;
+  postId: number;
+}
+
+export default function Heart({ session, postLiked, postId }: HeartProps) {
   const router = useRouter();
   const [liked, setLiked] = useState(postLiked);
   const id = postId;

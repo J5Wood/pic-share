@@ -2,7 +2,12 @@
 import ServerClient from "./serverClient";
 const url = process.env.CLOUDINARY_URL;
 
-export default async function AddImage(formData) {
+interface configObjInterface {
+  method: string;
+  body: HTMLFormElement;
+}
+
+export default async function AddImage(formData: HTMLFormElement) {
   const { supabase, session } = await ServerClient();
 
   if (!session) {
@@ -17,13 +22,13 @@ export default async function AddImage(formData) {
   formData.append("cloud_name", "dqzg3fumi");
   formData.append("upload_preset", "test_preset");
 
-  const configObj = {
+  const configObj: configObjInterface = {
     method: "post",
     body: formData,
   };
 
   try {
-    const imageRes = await fetch(url, configObj);
+    const imageRes = await fetch(url, configObj as unknown as HTMLFormElement);
     const imageResData = await imageRes.json();
 
     const { data, error } = await supabase

@@ -3,8 +3,16 @@ import PostImage from "./postImage";
 import PostContent from "./postContent";
 import Heart from "./heart";
 import DeletePostButton from "./deletePostButton";
+import SessionInterface from "./sessionInterface";
+import PostInterface from "./PostInterface";
 
-export default function Post({ post, liked, session }) {
+interface postProps {
+  post: PostInterface;
+  liked: boolean;
+  session: SessionInterface;
+}
+
+export default function Post({ post, liked, session }: postProps) {
   function renderDeleteButton() {
     if (session && post.user_id === session.user.id) {
       return <DeletePostButton postId={post.id} />;

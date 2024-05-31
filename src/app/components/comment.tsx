@@ -2,12 +2,25 @@ import Link from "next/link";
 import DeleteCommentButton from "./deleteCommentButton";
 import ServerClient from "../actions/serverClient";
 
-export default async function Comment({ commentData }) {
+interface commentDataInterface {
+  commentData: {
+    content: string;
+    username: string;
+    id: number;
+    user_id: string;
+  };
+}
+
+export default async function Comment({ commentData }: commentDataInterface) {
   const { session } = await ServerClient();
   const commentId = commentData.id.toString();
 
   function renderDeleteButton() {
-    if (session && commentData.user_id === session.user.id) {
+    if (
+      session &&
+      commentData.user_id === session.user.id &&
+      typeof commentId === "number"
+    ) {
       return <DeleteCommentButton commentId={commentId} />;
     }
   }

@@ -1,6 +1,12 @@
 import Link from "next/link";
+import PostInterface from "./PostInterface";
 
-export default function PostContent({ postData }) {
+interface PostProps {
+  postData: PostInterface;
+}
+
+export default function PostContent(props: PostProps) {
+  const postData = props.postData;
   const postId = postData.id.toString();
   return (
     <Link

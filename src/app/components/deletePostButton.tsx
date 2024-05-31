@@ -3,11 +3,18 @@
 import { useRouter } from "next/navigation";
 import DeletePost from "../actions/deletePost";
 
-export default function DeletePostButton({ postId }) {
+interface MyProps {
+  postId: number;
+}
+
+export default function DeletePostButton(props: MyProps) {
+  const postId = props.postId;
   const router = useRouter();
 
-  async function handlePostDelete(e) {
-    const id = e.target.dataset.id;
+  async function handlePostDelete(e: React.MouseEvent) {
+    const targetElement = e.target as HTMLElement;
+    const id = parseInt(targetElement.dataset.id);
+
     if (id) {
       await DeletePost(id);
       router.refresh();

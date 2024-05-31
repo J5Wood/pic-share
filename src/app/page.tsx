@@ -2,6 +2,7 @@ import GetPosts from "./actions/getPosts";
 import Post from "./components/post";
 import ServerClient from "./actions/serverClient";
 import PostInterface from "./components/PostInterface";
+import SessionInterface from "./components/sessionInterface";
 
 export default async function Page() {
   const { session } = await ServerClient();
@@ -21,7 +22,12 @@ export default async function Page() {
           }
         }
         return (
-          <Post liked={liked} post={post} session={session} key={post.id} />
+          <Post
+            liked={liked}
+            post={post}
+            session={session as unknown as SessionInterface}
+            key={post.id}
+          />
         );
       });
     }

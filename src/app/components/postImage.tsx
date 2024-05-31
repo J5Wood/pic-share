@@ -1,6 +1,12 @@
 import Image from "next/image";
+import PostInterface from "./PostInterface";
 
-export default function PostImage({ postData }) {
+interface PostProps {
+  postData: PostInterface;
+}
+
+export default function PostImage(props: PostProps) {
+  const postData = props.postData;
   const postDate = postData["inserted_at"];
   const correctedDate = postDate.slice(5, 10) + "-" + postDate.slice(0, 4);
 

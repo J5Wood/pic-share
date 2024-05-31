@@ -2,7 +2,10 @@
 
 import ServerClient from "./actions/serverClient";
 
-export default async function CommentFormAction(postId, formData) {
+export default async function CommentFormAction(
+  postId: number,
+  formData: HTMLFormElement
+) {
   const { supabase, session } = await ServerClient();
 
   if (!session) {

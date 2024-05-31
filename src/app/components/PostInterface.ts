@@ -4,6 +4,12 @@ export default interface PostInterface {
   username: string;
   user_id: string;
   content: string;
-  likes: Array<{ user_id: string }>;
   inserted_at: string;
+  likes: Array<{
+    user_id: string;
+    id?: number;
+    post_id?: number;
+    updated_at?: string;
+    inserted_at?: string;
+  }>;
 }

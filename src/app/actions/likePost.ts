@@ -2,7 +2,7 @@
 
 import ServerClient from "./serverClient";
 
-export default async function LikePost(postId, liked) {
+export default async function LikePost(postId: number, liked: boolean) {
   const { supabase, session } = await ServerClient();
 
   try {

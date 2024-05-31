@@ -1,6 +1,13 @@
 import NavBackButton from "../components/navBackButton";
+import { ReactNode } from "react";
 
-export default function UserLayout({ children }) {
+interface MyProps {
+  children?: ReactNode;
+}
+
+export default function UserLayout(props: MyProps) {
+  const children = props.children;
+
   return (
     <>
       <NavBackButton />

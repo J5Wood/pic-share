@@ -2,8 +2,15 @@ import ServerClient from "../../actions/serverClient";
 import GetUserPosts from "../../actions/getUserPosts";
 import Post from "../../components/post";
 import PostInterface from "../../components/PostInterface";
+import SessionInterface from "../../components/sessionInterface";
 
-export default async function Page({ params: { slug } }) {
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export default async function Page({ params: { slug } }: PageProps) {
   const { session } = await ServerClient();
 
   const posts = await GetUserPosts(slug);
@@ -22,7 +29,12 @@ export default async function Page({ params: { slug } }) {
         }
 
         return (
-          <Post liked={liked} post={post} session={session} key={post.id} />
+          <Post
+            liked={liked}
+            post={post}
+            session={session as unknown as SessionInterface}
+            key={post.id}
+          />
         );
       });
     }

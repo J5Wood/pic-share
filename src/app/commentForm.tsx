@@ -3,7 +3,12 @@ import { createRef } from "react";
 import CommentFormAction from "./commentFormAction";
 import { useRouter } from "next/navigation";
 
-export default function CommentForm({ postIdData }) {
+interface CommentFormProps {
+  postIdData: number;
+}
+
+export default function CommentForm({ postIdData }: CommentFormProps) {
+  console.log(postIdData);
   const router = useRouter();
   const ref = createRef<HTMLFormElement>();
   const createCommentActionWithPostId = CommentFormAction.bind(

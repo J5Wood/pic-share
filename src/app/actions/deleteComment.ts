@@ -2,7 +2,7 @@
 
 import ServerClient from "./serverClient";
 
-export default async function DeleteComment(id) {
+export default async function DeleteComment(id: number) {
   const { supabase, session } = await ServerClient();
   const userId = session.user.id;
 

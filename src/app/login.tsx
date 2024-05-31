@@ -15,11 +15,12 @@ export default function Login() {
   const router = useRouter();
   const supabase = createClientComponentClient();
 
-  function displayForm(e) {
-    if (e.target.dataset["form"] === "signup") {
+  function displayForm(e: React.MouseEvent) {
+    const targetElement = e.target as HTMLElement;
+    if (targetElement.dataset["form"] === "signup") {
       setShowSignup(true);
     }
-    if (e.target.dataset["form"] === "login") {
+    if (targetElement.dataset["form"] === "login") {
       setShowSignup(false);
     }
     setShowLoginButtons(false);
@@ -83,7 +84,7 @@ export default function Login() {
     );
   }
 
-  const handleSignUp = async (e) => {
+  const handleSignUp = async (e: React.MouseEvent) => {
     e.preventDefault();
     const { data, error } = await supabase.auth.signUp({
       email,
@@ -96,6 +97,7 @@ export default function Login() {
       },
     });
     if (error) {
+      console.log(typeof error);
       displayError(error.message);
     }
     if (data.user) {
@@ -111,13 +113,12 @@ export default function Login() {
     router.refresh();
   };
 
-  const handleSignIn = async (e) => {
+  const handleSignIn = async (e: React.MouseEvent) => {
     e.preventDefault();
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
-    console.log("DATA: ", data);
     if (error) {
       displayError(error.message);
     }
