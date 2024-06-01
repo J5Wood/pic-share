@@ -1,9 +1,15 @@
-"use client";
+// "use client";
 import { useState } from "react";
 import AddImage from "./actions/addImage";
 import { useRouter } from "next/navigation";
 
-export default function NewImgForm({ displayForm }) {
+interface NewImgFormProps {
+  displayForm: (
+    value: boolean | boolean | ((prevState: boolean) => boolean)
+  ) => void;
+}
+
+export default function NewImgForm({ displayForm }: NewImgFormProps) {
   const [content, setContent] = useState("");
   const router = useRouter();
 
@@ -12,7 +18,7 @@ export default function NewImgForm({ displayForm }) {
     fileInput.value = "";
   }
 
-  async function handleSubmit(data) {
+  async function handleSubmit(data: FormData) {
     await AddImage(data);
     displayForm(false);
     router.refresh();

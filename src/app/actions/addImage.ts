@@ -4,10 +4,10 @@ const url = process.env.CLOUDINARY_URL;
 
 interface configObjInterface {
   method: string;
-  body: HTMLFormElement;
+  body: FormData;
 }
 
-export default async function AddImage(formData: HTMLFormElement) {
+export default async function AddImage(formData: FormData) {
   const { supabase, session } = await ServerClient();
 
   if (!session) {
@@ -28,22 +28,29 @@ export default async function AddImage(formData: HTMLFormElement) {
   };
 
   try {
-    const imageRes = await fetch(url, configObj as unknown as HTMLFormElement);
-    const imageResData = await imageRes.json();
+    if (url) {
+      const imageRes = await fetch(
+        url,
+        configObj as unknown as HTMLFormElement
+      );
+      const imageResData = await imageRes.json();
 
-    const { data, error } = await supabase
-      .from("posts")
-      .insert([
-        {
-          content: textContent,
-          user_id: userId,
-          username: username,
-          url: imageResData.secure_url,
-        },
-      ])
-      .select();
-    if (error) throw error;
-    return data;
+      const { data, error } = await supabase
+        .from("posts")
+        .insert([
+          {
+            content: textContent,
+            user_id: userId,
+            username: username,
+            url: imageResData.secure_url,
+          },
+        ])
+        .select();
+      if (error) throw error;
+      return data;
+    } else {
+      throw Error("Missing Cloudinary API URL");
+    }
   } catch (err) {
     console.log("Image creation error: ", err);
   }

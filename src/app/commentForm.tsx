@@ -8,7 +8,6 @@ interface CommentFormProps {
 }
 
 export default function CommentForm({ postIdData }: CommentFormProps) {
-  console.log(postIdData);
   const router = useRouter();
   const ref = createRef<HTMLFormElement>();
   const createCommentActionWithPostId = CommentFormAction.bind(

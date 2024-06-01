@@ -13,11 +13,13 @@ export default function DeletePostButton(props: MyProps) {
 
   async function handlePostDelete(e: React.MouseEvent) {
     const targetElement = e.target as HTMLElement;
-    const id = parseInt(targetElement.dataset.id);
+    if (targetElement.dataset.id) {
+      const id = parseInt(targetElement.dataset.id);
 
-    if (id) {
-      await DeletePost(id);
-      router.refresh();
+      if (id) {
+        await DeletePost(id);
+        router.refresh();
+      }
     }
   }
 

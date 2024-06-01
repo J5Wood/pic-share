@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import DeleteComment from "../actions/deleteComment";
 
 interface commentIdInterface {
-  commentId: number;
+  commentId: string;
 }
 
 export default function DeleteCommentButton({ commentId }: commentIdInterface) {
@@ -12,11 +12,12 @@ export default function DeleteCommentButton({ commentId }: commentIdInterface) {
 
   async function handleCommentDelete(e: React.MouseEvent) {
     const targetElement = e.target as HTMLInputElement;
-    const id = parseInt(targetElement.dataset.id);
-
-    if (id) {
-      await DeleteComment(id);
-      router.refresh();
+    if (targetElement.dataset.id) {
+      const id = parseInt(targetElement.dataset.id);
+      if (id) {
+        await DeleteComment(id);
+        router.refresh();
+      }
     }
   }
 

@@ -97,7 +97,6 @@ export default function Login() {
       },
     });
     if (error) {
-      console.log(typeof error);
       displayError(error.message);
     }
     if (data.user) {
@@ -125,9 +124,11 @@ export default function Login() {
     router.refresh();
   };
 
-  function displayError(error) {
+  function displayError(error: string) {
     const errorContainer = document.querySelector(".error-container");
-    errorContainer.innerHTML = error;
+    if (errorContainer) {
+      errorContainer.innerHTML = error;
+    }
   }
 
   if (showLoginButtons) {

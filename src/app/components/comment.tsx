@@ -19,7 +19,7 @@ export default async function Comment({ commentData }: commentDataInterface) {
     if (
       session &&
       commentData.user_id === session.user.id &&
-      typeof commentId === "number"
+      typeof commentId === "string"
     ) {
       return <DeleteCommentButton commentId={commentId} />;
     }
