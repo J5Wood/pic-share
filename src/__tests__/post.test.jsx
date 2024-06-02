@@ -13,7 +13,7 @@ const postData = {
   content: "Magna fringilla urna porttitor rhoncus dolor purus.",
 };
 
-vi.mock("../app/components/deletePostButton.jsx", async () => {
+vi.mock("../app/components/deletePostButton.tsx", async () => {
   return {
     default: vi.fn(() => {
       return <button>Mocked Delete Button</button>;

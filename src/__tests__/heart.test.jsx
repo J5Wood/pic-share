@@ -8,6 +8,16 @@ vi.mock("../app/actions/likeActions", async () => {
   };
 });
 
+vi.mock("../app/actions/serverClient.ts", async () => {
+  return {
+    default: vi.fn(() => {
+      return {
+        session: true,
+      };
+    }),
+  };
+});
+
 test("Liked heart displays properly", async () => {
   render(<Heart session={true} postLiked={true} postId={12} />);
   const heart = await screen.findByRole("heart");

@@ -6,7 +6,7 @@ beforeAll(() => {
   vi.mock("next/router", () => require("next-router-mock"));
 });
 
-vi.mock("../app/actions/serverClient.js", async () => {
+vi.mock("../app/actions/serverClient.ts", async () => {
   return {
     default: vi.fn(() => {
       return {
@@ -20,7 +20,7 @@ vi.mock("../app/actions/serverClient.js", async () => {
   };
 });
 
-vi.mock("../app/components/deleteCommentButton.jsx", async () => {
+vi.mock("../app/components/deleteCommentButton.tsx", async () => {
   return {
     default: vi.fn(() => {
       return <button>Mocked delete button</button>;
