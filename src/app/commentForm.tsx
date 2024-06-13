@@ -21,14 +21,23 @@ export default function CommentForm({ postIdData }: CommentFormProps) {
       className="comment-form"
       aria-label="Add a comment"
       action={async (formData) => {
+        const commentSubmit = document.querySelector(
+          ".comment-submit-button"
+        ) as HTMLButtonElement;
+        commentSubmit.disabled = true;
         await createCommentActionWithPostId(formData);
         ref.current?.reset();
+        commentSubmit.disabled = false;
         router.refresh();
       }}
     >
       <label htmlFor="content">Comment:</label>
       <input name="content" id="content" type="text" role="comment-content" />
-      <input type="submit" role="form-submit-button" />
+      <input
+        type="submit"
+        className="comment-submit-button"
+        role="form-submit-button"
+      />
     </form>
   );
 }

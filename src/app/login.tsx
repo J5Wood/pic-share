@@ -86,6 +86,10 @@ export default function Login() {
 
   const handleSignUp = async (e: React.MouseEvent) => {
     e.preventDefault();
+    const signUpButton = document.querySelector(
+      ".auth-submit-button"
+    ) as HTMLButtonElement;
+    signUpButton.disabled = true;
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
@@ -109,11 +113,16 @@ export default function Login() {
         setShowLoginButtons(true);
       }
     }
+    signUpButton.disabled = false;
     router.refresh();
   };
 
   const handleSignIn = async (e: React.MouseEvent) => {
     e.preventDefault();
+    const signInButton = document.querySelector(
+      ".auth-submit-button"
+    ) as HTMLButtonElement;
+    signInButton.disabled = true;
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -121,6 +130,7 @@ export default function Login() {
     if (error) {
       displayError(error.message);
     }
+    signInButton.disabled = false;
     router.refresh();
   };
 

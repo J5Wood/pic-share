@@ -19,8 +19,15 @@ export default function NewImgForm({ displayForm }: NewImgFormProps) {
   }
 
   async function handleSubmit(data: FormData) {
+    const submitButton = document.querySelector(
+      ".submit-button"
+    ) as HTMLButtonElement;
+    if (submitButton) {
+      submitButton.disabled = true;
+    }
     await AddImage(data);
     displayForm(false);
+    submitButton.disabled = false;
     router.refresh();
     setContent("");
     clearFileInput();
@@ -39,9 +46,7 @@ export default function NewImgForm({ displayForm }: NewImgFormProps) {
         name="text-content"
         value={content}
       />
-      <button className="submit-button" type="submit">
-        SUBMIT
-      </button>
+      <input className="submit-button" type="submit"></input>
     </form>
   );
 }
